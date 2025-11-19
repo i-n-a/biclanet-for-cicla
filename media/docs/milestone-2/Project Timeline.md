@@ -1,4 +1,4 @@
-### Project Timeline – Gantt Chart (Milestone 2 focused)
+### Project Timeline – Gantt Chart
 
 ```mermaid
 gantt
