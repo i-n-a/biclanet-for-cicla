@@ -27,7 +27,7 @@ gantt
     Final Presentation                   :2026-01-06, 1d
 ```
 
-
+[(Link to Working document)](https://docs.google.com/document/d/1_f73_U93AwlQ-TL3sfaMJZ4F4geB0MIdHWNPetevUEc/edit?usp=sharing)
 
 # Cicla EcoPod – Smart Urban Bike Parking System
 
@@ -49,5 +49,3 @@ EcoPod is a smart, connected bicycle parking system for urban environments, crea
 This repository contains the complete development, documentation, and source code for the Cicla EcoPod project, developed as part of the MSc in Creative Computing and Artificial Intelligence at IADE.
 
 More details in [docs](https://github.com/i-n-a/cicla-ecopod/tree/main/media/docs) or in [wiki](https://github.com/i-n-a/cicla-ecopod/wiki).
-
-
