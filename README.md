@@ -49,3 +49,4 @@ EcoPod is a smart, connected bicycle parking system for urban environments, crea
 This repository contains the complete development, documentation, and source code for the Cicla EcoPod project, developed as part of the MSc in Creative Computing and Artificial Intelligence at IADE.
 
 More details in [docs](https://github.com/i-n-a/cicla-ecopod/tree/main/media/docs) or in [wiki](https://github.com/i-n-a/cicla-ecopod/wiki).
+[Power report](media/docs/milestone-2/Power.md)
