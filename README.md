@@ -50,3 +50,9 @@ This repository contains the complete development, documentation, and source cod
 
 More details in [docs](https://github.com/i-n-a/cicla-ecopod/tree/main/media/docs) or in [wiki](https://github.com/i-n-a/cicla-ecopod/wiki).
 [Power report](media/docs/milestone-2/Power.md)
+
+
+Additional repositories:
+- [cicla-ecopod IOT MainUnit ESP32 code](https://github.com/berlogabob/cicla-ecopod-ESP32-MainUnit)
+- [cicla-ecopod IOT Entrance Subsystem ESP32 code](https://github.com/berlogabob/cicla-ecopod-ESP32-Entrance-Subsystem)
+
