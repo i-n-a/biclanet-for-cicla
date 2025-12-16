@@ -1,6 +1,8 @@
+archive. This is a first draft of the Power_V01.md file.
+
 # Cicla EcoPod – Power Consumption and Autonomous Solar System Report  
 **M-CCIA Project I – Milestone 1 Technical Annex**  
-**Date:** 5 December 2025  
+**Date:** 22 November 2025  
 **Team:** Andrey, Inge, Nadine  
 
 ## 1. System Overview  
