@@ -1,0 +1,70 @@
+{
+  "devices": {
+    "Pod_01_Claw_01": {
+      "raw_value": 2396,
+      "rtc": 23.96805,
+      "settings": {
+        "connection_package": {
+          "noise_amount": 1.5,
+          "send_interval": 1,
+          "sensor_buffer_time": 1,
+          "sin_amplitude": 8,
+          "sin_period_minutes": 60,
+          "temp_coefficient": 3
+        }
+      },
+      "temperature": 23.96805,
+      "timestamp": 10844
+    },
+    "Pod_01_base_01": {
+      "avg_light": 1063,
+      "brightness": 0,
+      "locker": {
+        "door": 1,
+        "spot": 1
+      },
+      "sensor_weights": {
+        "sensor0": 0,
+        "sensor1": 0,
+        "sensor2": 1,
+        "sensor3": 1
+      },
+      "sensors": {
+        "sensor_weights": {
+          "sensor0": 1,
+          "sensor1": 1,
+          "sensor2": 1,
+          "sensor3": 1
+        },
+        "sensors_data": {
+          "sensor0": 131,
+          "sensor1": 4095,
+          "sensor2": 4,
+          "sensor3": 23
+        }
+      },
+      "settings": {
+        "connection_package": {
+          "qty_reading_sensors_in_second": 10,
+          "send_interval": 1,
+          "sensor_buffer_time": 10
+        },
+        "light_mapping": {
+          "light_threshold": 1000,
+          "min_light": 100,
+          "target_light": 1000
+        },
+        "light_mode": {
+          "manual_override": 0,
+          "manual_toggle": 0
+        }
+      },
+      "timestamp": 15268
+    },
+    "Pod_01_entrada_01": {
+      "door_state": 0,
+      "spot_state": 1,
+      "timestamp": 10258
+    }
+  }
+}
