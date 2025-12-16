@@ -31,7 +31,7 @@ gantt
 
 
 # Useful Links  
-[![](/media/milestone-2/BiclaNet_Presentation_video.png)](https://youtu.be/kNcF7gDWNXE)
+[![youtube linke](/media/milestone-2/BiclaNet_Presentation_video.png)](https://youtu.be/kNcF7gDWNXE)
 
 # Cicla EcoPod – Smart Urban Bike Parking System
 
