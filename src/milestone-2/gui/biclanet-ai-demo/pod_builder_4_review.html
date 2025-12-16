@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Pod Builder - Step 4: Review | BiclaNet</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body data-flow="pod" data-step="4">
+  <div class="app-layout">
+    <div id="sidebar"></div>
+    <div class="content-area">
+      <div id="topbar"></div>
+      <div id="stepper"></div>
+
+      <main class="builder-main">
+        <header class="builder-header">
+          <h1 class="builder-title">Step 4: Review</h1>
+          <p class="builder-subtitle">Assign the pod to a fleet, set network targets, and review the final configuration before publishing. Confirm your hardware selections.</p>
+        </header>
+
+        <div class="review-layout">
+          <div class="review-main">
+            <section class="builder-section">
+              <h2 class="builder-section-title">Configuration Summary</h2>
+              
+              <div class="summary-grid" id="summaryGrid">
+                <!-- Summary items -->
+              </div>
+            </section>
+
+            <section class="builder-section">
+              <h2 class="builder-section-title">Cost Breakdown</h2>
+              
+              <div class="cost-table">
+                <div class="cost-row">
+                  <span>Base Pod Unit</span>
+                  <span>$2,450.00</span>
+                </div>
+                <div class="cost-row">
+                  <span>Core Hardware Package</span>
+                  <span>$1,200.00</span>
+                </div>
+                <div class="cost-row" id="optionalCosts">
+                  <!-- Optional costs -->
+                </div>
+                <div class="cost-row cost-row-total">
+                  <span>Total Estimated Cost</span>
+                  <span id="totalCost">$3,650.00</span>
+                </div>
+              </div>
+            </section>
+
+            <section class="builder-section">
+              <h2 class="builder-section-title">Dependency Summary</h2>
+              <p class="builder-section-description">Your hardware selections require and enable specific features in the Rider App.</p>
+              
+              <div class="dependency-section">
+                <h3>Required App Features</h3>
+                <div class="dependency-list" id="requiredFeatures">
+                  <!-- Required features -->
+                </div>
+              </div>
+
+              <div class="dependency-section">
+                <h3>Optional App Features</h3>
+                <div class="dependency-list" id="optionalFeatures">
+                  <!-- Optional features -->
+                </div>
+              </div>
+            </section>
+          </div>
+
+          <div class="review-sidebar">
+            <section class="builder-section">
+              <h2 class="builder-section-title">Fleet Assignment</h2>
+              <p class="builder-section-description">Assign this pod to a fleet for management.</p>
+              
+              <div class="fleet-select">
+                <select id="fleetSelect" class="form-select">
+                  <option value="">Select a fleet...</option>
+                  <option value="fleet1">Fleet Alpha</option>
+                  <option value="fleet2">Fleet Beta</option>
+                  <option value="fleet3">Fleet Gamma</option>
+                </select>
+              </div>
+            </section>
+          </div>
+        </div>
+
+        <nav class="builder-nav">
+          <button class="btn-secondary" onclick="window.location.href='pod_builder_3_simulation.html'">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+              <path d="M7.5 3L4.5 6L7.5 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            Back: Simulation
+          </button>
+          <button class="btn-primary" onclick="publishPod()">
+            Publish Pod Configuration
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+              <path d="M4.5 9L7.5 6L4.5 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </nav>
+      </main>
+    </div>
+  </div>
+
+  <script src="app_shell.js"></script>
+  <script src="builder_state.js"></script>
+  <script>
+
+    function renderSummary() {
+      const config = BuilderState.getConfig();
+      const grid = document.getElementById('summaryGrid');
+      
+      grid.innerHTML = `
+        <div class="summary-item">
+          <span class="summary-label">Model</span>
+          <span class="summary-value">${config.pod.model}</span>
+        </div>
+        <div class="summary-item">
+          <span class="summary-label">Capacity</span>
+          <span class="summary-value">${config.pod.capacity} bikes</span>
+        </div>
+        <div class="summary-item">
+          <span class="summary-label">Deployment Context</span>
+          <span class="summary-value">${config.pod.context.join(', ')}</span>
+        </div>
+        <div class="summary-item">
+          <span class="summary-label">Access Methods</span>
+          <span class="summary-value">${getAccessMethods()}</span>
+        </div>
+        <div class="summary-item">
+          <span class="summary-label">Lock Type</span>
+          <span class="summary-value">${config.pod.lock.type}</span>
+        </div>
+        <div class="summary-item">
+          <span class="summary-label">Sensors</span>
+          <span class="summary-value">${getSensorsList()}</span>
+        </div>
+      `;
+    }
+
+    function getAccessMethods() {
+      const config = BuilderState.getConfig();
+      if (config.pod.access.both) return 'QR + RFID';
+      if (config.pod.access.qr) return 'QR Scanner';
+      if (config.pod.access.rfid) return 'RFID Reader';
+      return 'None';
+    }
+
+    function getSensorsList() {
+      const config = BuilderState.getConfig();
+      const sensors = [];
+      if (config.pod.sensors.presence) sensors.push('Presence');
+      if (config.pod.sensors.hub) sensors.push('Hub');
+      if (config.pod.sensors.network) sensors.push('Network');
+      if (config.pod.sensors.tempHumidity) sensors.push('Temp/Humidity');
+      if (config.pod.sensors.camera) sensors.push('Camera');
+      return sensors.join(', ') || 'None';
+    }
+
+    function renderCosts() {
+      const config = BuilderState.getConfig();
+      const optionalContainer = document.getElementById('optionalCosts');
+      let optionalTotal = 0;
+      
+      optionalContainer.innerHTML = '';
+      
+      if (config.pod.sensors.tempHumidity) {
+        optionalContainer.innerHTML += '<div class="cost-row"><span>Temperature & Humidity Sensor</span><span>$150.00</span></div>';
+        optionalTotal += 150;
+      }
+      if (config.pod.sensors.camera) {
+        optionalContainer.innerHTML += '<div class="cost-row"><span>Security Camera</span><span>$300.00</span></div>';
+        optionalTotal += 300;
+      }
+      
+      const total = 3650 + optionalTotal;
+      document.getElementById('totalCost').textContent = `$${total.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+    }
+
+    function renderDependencies() {
+      const required = BuilderState.getRequiredAppFeatures();
+      const optional = BuilderState.getOptionalAppFeatures();
+      
+      const requiredContainer = document.getElementById('requiredFeatures');
+      requiredContainer.innerHTML = required.length > 0 
+        ? required.map(f => `<div class="dependency-item dependency-required">✓ ${f}</div>`).join('')
+        : '<div class="dependency-item">No required features</div>';
+      
+      const optionalContainer = document.getElementById('optionalFeatures');
+      optionalContainer.innerHTML = optional.length > 0
+        ? optional.map(f => `<div class="dependency-item dependency-optional">○ ${f}</div>`).join('')
+        : '<div class="dependency-item">No optional features</div>';
+    }
+
+    function publishPod() {
+      alert('Pod configuration published successfully!');
+      window.location.href = 'dashboard.html';
+    }
+
+    function initPage() {
+      renderSummary();
+      renderCosts();
+      renderDependencies();
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initPage);
+    } else {
+      initPage();
+    }
+  </script>
+  <style>
+    .review-layout {
+      display: grid;
+      grid-template-columns: 1fr 400px;
+      gap: 24px;
+      margin-bottom: 32px;
+    }
+
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      margin-top: 24px;
+    }
+
+    .summary-item {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .summary-label {
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 12px;
+      color: #6b7280;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .summary-value {
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 16px;
+      font-weight: 600;
+      color: #1a1a1a;
+    }
+
+    .cost-table {
+      margin-top: 24px;
+    }
+
+    .cost-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 12px 0;
+      border-bottom: 1px solid #e5e7eb;
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 14px;
+    }
+
+    .cost-row-total {
+      border-top: 2px solid #1a1a1a;
+      border-bottom: none;
+      font-weight: 600;
+      font-size: 18px;
+      margin-top: 8px;
+    }
+
+    .dependency-section {
+      margin-top: 24px;
+    }
+
+    .dependency-section h3 {
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 16px;
+      font-weight: 600;
+      color: #1a1a1a;
+      margin: 0 0 12px 0;
+    }
+
+    .dependency-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .dependency-item {
+      padding: 12px;
+      background: #f9fafb;
+      border-radius: 6px;
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 14px;
+      color: #1a1a1a;
+    }
+
+    .dependency-required {
+      border-left: 3px solid #1a1a1a;
+    }
+
+    .dependency-optional {
+      border-left: 3px solid #9ca3af;
+      color: #6b7280;
+    }
+
+    .form-select {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 14px;
+      background: white;
+      margin-top: 16px;
+    }
+
+    @media (max-width: 1200px) {
+      .review-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</body>
+</html>
+

@@ -1,0 +1,13 @@
+[
+  { "pod_id": "POD-GCT-001A", "timestamp": "2025-12-10T09:00:00Z", "occupancy_rate": 0.65 },
+  { "pod_id": "POD-GCT-001A", "timestamp": "2025-12-10T12:00:00Z", "occupancy_rate": 0.82 },
+  { "pod_id": "POD-GCT-001A", "timestamp": "2025-12-10T15:00:00Z", "occupancy_rate": 0.78 },
+
+  { "pod_id": "POD-SHO-004C", "timestamp": "2025-12-10T09:00:00Z", "occupancy_rate": 0.30 },
+  { "pod_id": "POD-SHO-004C", "timestamp": "2025-12-10T12:00:00Z", "occupancy_rate": 0.45 },
+  { "pod_id": "POD-SHO-004C", "timestamp": "2025-12-10T15:00:00Z", "occupancy_rate": 0.52 },
+
+  { "pod_id": "POD-BKT-008A", "timestamp": "2025-12-10T09:00:00Z", "occupancy_rate": 0.15 },
+  { "pod_id": "POD-BKT-008A", "timestamp": "2025-12-10T12:00:00Z", "occupancy_rate": 0.28 },
+  { "pod_id": "POD-BKT-008A", "timestamp": "2025-12-10T15:00:00Z", "occupancy_rate": 0.34 }
+]

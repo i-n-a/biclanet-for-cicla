@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>BiclaNet – Pod Control</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app-layout">
+    <!-- Sidebar -->
+    <div id="sidebar"></div>
+
+    <!-- Content Area -->
+    <div class="content-area">
+      <!-- Top Navigation Bar -->
+      <div id="topbar"></div>
+
+      <!-- Main Content -->
+      <main class="dashboard-main">
+        <div class="pod-container">
+          <!-- Pod Header -->
+          <div class="pod-header">
+            <div class="pod-header-left">
+              <h1 class="pod-title" id="podTitle">Pod Control: <span id="podId">—</span></h1>
+              <div class="pod-meta">
+                <div class="pod-meta-item">
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M7 1L9 5L13 5.5L10 8.5L10.5 13L7 11L3.5 13L4 8.5L1 5.5L5 5L7 1Z" stroke="#5a5a5a" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                  <span id="podLocation">IADE Central Hub</span>
+                </div>
+                <div class="pod-meta-item">
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="1" y="1" width="12" height="12" rx="1" stroke="#5a5a5a" stroke-width="1.2"/>
+                    <path d="M4 4H10M4 7H10M4 10H7" stroke="#5a5a5a" stroke-width="1.2" stroke-linecap="round"/>
+                  </svg>
+                  <span id="podFirmware">Firmware: v2.3.1</span>
+                </div>
+              </div>
+            </div>
+            <div class="pod-status-badge">
+              <span class="pod-status-dot"></span>
+              <span>Online</span>
+            </div>
+          </div>
+
+          <!-- Main Grid Layout -->
+          <div class="pod-content-grid">
+            <!-- Left Column -->
+            <div class="pod-left-column">
+              <!-- Live Pod Status Card -->
+              <div class="pod-card pod-status-card" id="podStatusCard">
+                <h3 class="pod-card-title" id="podStatusCardTitle">Selected Slot Status</h3>
+                <div class="pod-status-icon" id="podStatusIcon">
+                  <div class="pod-status-icon-circle" id="podStatusIconCircle">
+                    <svg width="42" height="42" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M12 21L18 27L30 15" stroke="#81c784" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </div>
+                </div>
+                <div class="pod-status-text">
+                  <div id="podStatusSlot">Slot 01</div>
+                  <div class="pod-status-main" id="podStatusMain">Available</div>
+                  <div class="pod-status-sub" id="podStatusSub">Slot is ready for use</div>
+                </div>
+              </div>
+
+              <!-- Remote Actions Card -->
+              <div class="pod-card pod-actions-card">
+                <h3 class="pod-card-title">Remote Actions</h3>
+                <div class="pod-actions">
+                  <button class="pod-action-btn pod-action-lock">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <rect x="4" y="9" width="12" height="8" rx="1.5" stroke="currentColor" stroke-width="1.5"/>
+                      <path d="M6 9V6C6 3.79086 7.79086 2 10 2C12.2091 2 14 3.79086 14 6V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                    </svg>
+                    <span>Force Lock</span>
+                  </button>
+                  <button class="pod-action-btn pod-action-emergency">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M10 4L14 14H6L10 4Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                      <path d="M10 12V14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                    </svg>
+                    <span>Emergency Open</span>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Occupancy Forecast -->
+              <div class="pod-card pod-forecast-card">
+                <h3 class="pod-card-title">Occupancy Forecast (24h)</h3>
+                <p class="pod-forecast-desc">ML-powered prediction of slot usage.</p>
+                <div class="pod-chart-container">
+                  <canvas id="occupancyChart" width="800" height="200"></canvas>
+                </div>
+              </div>
+
+              <!-- Activity Log -->
+              <div class="pod-card pod-activity-card">
+                <h3 class="pod-card-title">Activity Log Timeline</h3>
+                <div class="pod-activity-log" id="podActivityLog">
+                  <!-- Will be populated by JS -->
+                </div>
+              </div>
+            </div>
+
+            <!-- Right Column -->
+            <div class="pod-right-column">
+              <!-- Slot Grid -->
+              <div class="pod-card pod-slots-card">
+                <h3 class="pod-card-title">Slot-Level Occupancy</h3>
+                <div class="pod-slots-grid" id="podSlotsGrid">
+                  <!-- Will be populated by JS -->
+                </div>
+                <div class="pod-slot-details" id="podSlotDetails">
+                  <div class="pod-slot-details-header">Slot 01 Details</div>
+                  <div class="pod-slot-details-content">
+                    <div>Time unoccupied: <strong>2h 14m</strong></div>
+                    <div>Last Unlock: <strong>2025-12-05 14:12:03</strong></div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Environment & Power -->
+              <div class="pod-card pod-env-card">
+                <h3 class="pod-card-title">Environment & Power</h3>
+                <div class="pod-env-list">
+                  <div class="pod-env-item">
+                    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M9 2V5M9 13V16M5 9H2M16 9H13M4.93 4.93L6.76 6.76M11.24 11.24L13.07 13.07M4.93 13.07L6.76 11.24M11.24 6.76L13.07 4.93" stroke="#5a5a5a" stroke-width="1.5" stroke-linecap="round"/>
+                      <circle cx="9" cy="9" r="3" stroke="#5a5a5a" stroke-width="1.5"/>
+                    </svg>
+                    <span class="pod-env-label">Temperature</span>
+                    <span class="pod-env-value">22.5 °C</span>
+                  </div>
+                  <div class="pod-env-item">
+                    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M9 2C9 2 6 6 6 9C6 11.2091 7.79086 13 10 13C12.2091 13 14 11.2091 14 9C14 6 11 2 11 2" stroke="#5a5a5a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span class="pod-env-label">Humidity</span>
+                    <span class="pod-env-value">48%</span>
+                  </div>
+                  <div class="pod-env-item">
+                    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M9 2L11 8H17L12 12L14 18L9 14L4 18L6 12L1 8H7L9 2Z" stroke="#5a5a5a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span class="pod-env-label">Voltage</span>
+                    <span class="pod-env-value">5.1V</span>
+                  </div>
+                  <div class="pod-env-item">
+                    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M9 2C11.2091 2 13 3.79086 13 6C13 8.20914 11.2091 10 9 10C6.79086 10 5 8.20914 5 6C5 3.79086 6.79086 2 9 2Z" stroke="#5a5a5a" stroke-width="1.5"/>
+                      <path d="M3 14C3 11 5.5 9 9 9C12.5 9 15 11 15 14" stroke="#5a5a5a" stroke-width="1.5" stroke-linecap="round"/>
+                    </svg>
+                    <span class="pod-env-label">Connectivity</span>
+                    <span class="pod-env-value">-65 dBm</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Technical Configuration -->
+              <div class="pod-card pod-tech-card">
+                <h3 class="pod-card-title">Technical Configuration</h3>
+                <div class="pod-tech-list">
+                  <div class="pod-tech-item">Model: <strong>V3-PRO</strong></div>
+                  <div class="pod-tech-item">Sensors: <strong>IR-2, VOLT-1</strong></div>
+                  <div class="pod-tech-item">Firmware: <strong>v2.7.1</strong></div>
+                </div>
+                <div class="pod-tech-actions">
+                  <button class="pod-tech-btn">
+                    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M9 1V5M9 13V17M1 9H5M13 9H17M3.05 3.05L5.88 5.88M12.12 12.12L14.95 14.95M3.05 14.95L5.88 12.12M12.12 5.88L14.95 3.05" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                      <circle cx="9" cy="9" r="3" stroke="currentColor" stroke-width="1.5"/>
+                    </svg>
+                    <span>Reboot Unit</span>
+                  </button>
+                  <button class="pod-tech-btn">
+                    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M9 12V2M9 2L5 6M9 2L13 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                      <path d="M2 16H16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                    </svg>
+                    <span>Export Logs</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <script>
+    // Get podId from query string
+    const urlParams = new URLSearchParams(window.location.search);
+    const podId = urlParams.get('podId') || 'POD-UNKNOWN';
+    
+    // Update page title and pod ID display
+    document.getElementById('podId').textContent = podId;
+    document.title = `BiclaNet – Pod Control: ${podId}`;
+
+    // Generate slot grid (3 rows x 4 columns = 12 slots)
+    const slotsGrid = document.getElementById('podSlotsGrid');
+    const slotStates = ['available', 'available', 'available', 'occupied', 'available', 'available', 'available', 'error', 'available', 'available', 'available', 'available'];
+    
+    function updateSlotDetails(slotNum, state) {
+      const details = document.getElementById('podSlotDetails');
+      details.querySelector('.pod-slot-details-header').textContent = `Slot ${slotNum} Details`;
+      if (state === 'available') {
+        details.querySelector('.pod-slot-details-content').innerHTML = `
+          <div>Time unoccupied: <strong>2h 14m</strong></div>
+          <div>Last Unlock: <strong>2025-12-05 14:12:03</strong></div>
+        `;
+      } else if (state === 'occupied') {
+        details.querySelector('.pod-slot-details-content').innerHTML = `
+          <div>Occupied: <strong>45m</strong></div>
+          <div>Unlocked: <strong>11:12 AM</strong></div>
+        `;
+      } else {
+        details.querySelector('.pod-slot-details-content').innerHTML = `
+          <div>Error: <strong>Lock Jam</strong></div>
+          <div>Reported: <strong>09:55 AM</strong></div>
+        `;
+      }
+    }
+
+    function updateStatusCard(slotNum, state) {
+      const statusSlot = document.getElementById('podStatusSlot');
+      const statusMain = document.getElementById('podStatusMain');
+      const statusSub = document.getElementById('podStatusSub');
+      const statusIconCircle = document.getElementById('podStatusIconCircle');
+      const statusCard = document.getElementById('podStatusCard');
+      
+      statusSlot.textContent = `Slot ${slotNum}`;
+      
+      if (state === 'available') {
+        statusMain.textContent = 'Available';
+        statusSub.textContent = 'Slot is ready for use';
+        statusIconCircle.innerHTML = `
+          <svg width="42" height="42" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 21L18 27L30 15" stroke="#81c784" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        `;
+        statusIconCircle.style.borderColor = '#81c784';
+        statusIconCircle.style.background = 'rgba(129, 199, 132, 0.1)';
+        statusMain.style.color = '#1a1a1a';
+      } else if (state === 'occupied') {
+        statusMain.textContent = 'Occupied';
+        statusSub.textContent = 'Slot is currently in use';
+        statusIconCircle.innerHTML = `
+          <svg width="38" height="38" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="19" cy="19" r="15" fill="#81c784" fill-opacity="0.2"/>
+            <path d="M12 19C12 19 15 15 19 15C23 15 26 19 26 19" stroke="#81c784" stroke-width="2" stroke-linecap="round"/>
+            <circle cx="19" cy="19" r="8" fill="none" stroke="#81c784" stroke-width="2"/>
+          </svg>
+        `;
+        statusIconCircle.style.borderColor = '#81c784';
+        statusIconCircle.style.background = 'rgba(129, 199, 132, 0.1)';
+        statusMain.style.color = '#1a1a1a';
+      } else {
+        statusMain.textContent = 'Issue';
+        statusSub.textContent = 'Slot requires attention';
+        statusIconCircle.innerHTML = `
+          <svg width="42" height="42" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M21 11V21M21 31H21.0175M41 21C41 26.7467 36.7467 31 31 31C25.2533 31 21 26.7467 21 21C21 15.2533 25.2533 11 31 11C36.7467 11 41 15.2533 41 21Z" stroke="#e57373" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        `;
+        statusIconCircle.style.borderColor = '#e57373';
+        statusIconCircle.style.background = 'rgba(229, 115, 115, 0.1)';
+        statusMain.style.color = '#e57373';
+      }
+    }
+    
+    slotStates.forEach((state, index) => {
+      const slot = document.createElement('div');
+      slot.className = `pod-slot pod-slot-${state}`;
+      if (index === 0) slot.classList.add('pod-slot-selected');
+      
+      const slotNum = String(index + 1).padStart(2, '0');
+      
+      let icon;
+      if (state === 'occupied') {
+        icon = '<svg width="38" height="38" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="19" cy="19" r="15" fill="#81c784" fill-opacity="0.2"/><path d="M12 19C12 19 15 15 19 15C23 15 26 19 26 19" stroke="#81c784" stroke-width="2" stroke-linecap="round"/><circle cx="19" cy="19" r="8" fill="none" stroke="#81c784" stroke-width="2"/></svg>';
+      } else if (state === 'error') {
+        icon = '<svg width="23" height="23" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M11.5 6V11.5M11.5 17H11.5175M21 11.5C21 16.7467 16.7467 21 11.5 21C6.25329 21 2 16.7467 2 11.5C2 6.25329 6.25329 2 11.5 2C16.7467 2 21 6.25329 21 11.5Z" stroke="#e57373" stroke-width="1.5" stroke-linecap="round"/></svg>';
+      } else {
+        icon = '<svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 10.5L9 14.5L16 7.5" stroke="#5a5a5a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+      }
+      
+      slot.innerHTML = `
+        ${icon}
+        <div class="pod-slot-label">SLOT ${slotNum}</div>
+      `;
+      
+      slot.addEventListener('click', () => {
+        document.querySelectorAll('.pod-slot').forEach(s => s.classList.remove('pod-slot-selected'));
+        slot.classList.add('pod-slot-selected');
+        updateSlotDetails(slotNum, state);
+        updateStatusCard(slotNum, state);
+      });
+      
+      slotsGrid.appendChild(slot);
+    });
+
+    // Initialize slot details and status card for first slot
+    updateSlotDetails('01', slotStates[0]);
+    updateStatusCard('01', slotStates[0]);
+
+    // Generate activity log
+    const activityLog = document.getElementById('podActivityLog');
+    const activities = [
+      { time: '12:06:41', type: 'unlock', text: 'Slot 07 by user_8B1C' },
+      { time: '11:12:05', type: 'unlock', text: 'Slot 04 by user_A4D2' },
+      { time: '10:32:18', type: 'unlock', text: 'Slot 01 by user_F9E0' },
+      { time: '09:55:12', type: 'error', text: 'Slot 08 lock mechanism unresponsive.' },
+      { time: '09:45:30', type: 'lock', text: 'Slot 09' },
+      { time: '08:21:55', type: 'unlock', text: 'Slot 09 by user_C3B7' },
+      { time: '07:50:02', type: 'lock', text: 'Slot 05' },
+      { time: '07:15:49', type: 'system', text: 'Firmware update v2.7.1 applied.' }
+    ];
+
+    activities.forEach(activity => {
+      const entry = document.createElement('div');
+      entry.className = 'pod-activity-entry';
+      const typeClass = `pod-activity-${activity.type}`;
+      entry.innerHTML = `
+        <span class="pod-activity-time">${activity.time}</span>
+        <span class="pod-activity-text ${typeClass}">
+          [${activity.type.toUpperCase()}] ${activity.text}
+        </span>
+      `;
+      activityLog.appendChild(entry);
+    });
+
+    // Simple chart placeholder
+    const canvas = document.getElementById('occupancyChart');
+    if (canvas) {
+      const ctx = canvas.getContext('2d');
+      const width = canvas.width;
+      const height = canvas.height;
+      
+      // Draw grid
+      ctx.strokeStyle = '#e5e7eb';
+      ctx.lineWidth = 1;
+      for (let i = 0; i <= 4; i++) {
+        const y = (height / 4) * i;
+        ctx.beginPath();
+        ctx.moveTo(40, y);
+        ctx.lineTo(width - 20, y);
+        ctx.stroke();
+      }
+      
+      // Draw axes labels
+      ctx.fillStyle = '#5a5a5a';
+      ctx.font = '12px monospace';
+      ctx.fillText('0', 25, height - 5);
+      ctx.fillText('5', 25, height / 2);
+      ctx.fillText('10', 20, 15);
+      
+      // Draw simple line chart
+      ctx.strokeStyle = '#7ca8d6';
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      const points = [3, 4, 6, 5, 7, 8, 6, 5, 4, 3, 5, 6, 7, 8, 7, 6, 5, 4, 3, 2, 3, 4, 5, 4];
+      const stepX = (width - 60) / (points.length - 1);
+      const maxY = 10;
+      
+      points.forEach((value, i) => {
+        const x = 40 + (i * stepX);
+        const y = height - 20 - ((value / maxY) * (height - 40));
+        if (i === 0) {
+          ctx.moveTo(x, y);
+        } else {
+          ctx.lineTo(x, y);
+        }
+      });
+      ctx.stroke();
+      
+      // Fill area under line
+      ctx.fillStyle = 'rgba(124, 168, 214, 0.2)';
+      ctx.lineTo(width - 20, height - 20);
+      ctx.lineTo(40, height - 20);
+      ctx.closePath();
+      ctx.fill();
+    }
+    </script>
+  
+  <!-- App Shell Loader -->
+  <script src="app_shell.js"></script>
+</body>
+</html>
+

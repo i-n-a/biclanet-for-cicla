@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>BiclaNet – Operator Dashboard</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app-layout">
+    <!-- Sidebar -->
+    <div id="sidebar"></div>
+
+    <!-- Content Area -->
+    <div class="content-area">
+      <!-- Top Navigation Bar -->
+      <div id="topbar"></div>
+
+      <!-- Main Content -->
+      <main class="dashboard-main">
+        <div class="dashboard-shell">
+          <header class="dashboard-header">
+      <div>
+        <div class="dashboard-title">Dashboard Overview</div>
+        <div class="dashboard-subtitle">
+          AI-assisted overview of your BiclaNet pods.
+        </div>
+      </div>
+        <div class="dashboard-right">
+    <div class="demo-tabs">
+      <a class="demo-tab demo-tab-active" href="dashboard.html">Operator Dashboard</a>
+      <a class="demo-tab" href="app.html">Rider App</a>
+    </div>
+  </div>
+
+    </header>
+
+    <!-- Top stats row -->
+    <section class="stat-grid">
+      <div class="stat-card">
+        <div class="stat-label">Total Pods</div>
+        <div class="stat-value" id="totalPods">—</div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-label">Active / Offline</div>
+        <div class="stat-value" id="activeOffline">—</div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-label">Firebase &amp; API Status</div>
+        <span class="status-pill">
+          <span class="status-dot"></span>
+          Connected (simulated)
+        </span>
+        <div class="stat-subvalue">Using exported AI predictions</div>
+      </div>
+
+     <div class="stat-card">
+  <div class="stat-label">Predicted Usage (24h)</div>
+  <div class="stat-value"><span id="predictedUsage">—</span>%</div>
+  <div class="predicted-usage-bar">
+    <div class="predicted-usage-fill" id="predictedUsageFill"></div>
+  </div>
+  <div id="usageForecastBars"></div>
+
+  <div class="usage-activity-pill">
+    <span class="usage-dot"></span>
+    <span class="usage-activity-text">
+      Model running on last 24h of pod data
+    </span>
+  </div>
+</div>
+
+    </section>
+<!-- Live system activity strip -->
+    <section class="system-activity">
+      <div class="system-activity-info">
+        <div class="system-activity-title">Live System Activity (real-time)</div>
+        <div class="system-activity-subtitle">
+          Visualizing AI processing load and pod signals.
+        </div>
+      </div>
+      <div class="system-activity-vis">
+        <!-- p5 canvas will attach here -->
+        <div id="systemActivityCanvas"></div>
+      </div>
+    </section>
+    <!-- Main content -->
+    <section class="main-grid">
+      <!-- Left: table -->
+      <div class="panel">
+        <div class="panel-title">Live Pod Status</div>
+        <table class="pod-table">
+          <thead>
+            <tr>
+              <th>Pod ID</th>
+              <th>Last Sync</th>
+              <th>Location</th>
+              <th>Status</th>
+              <th>Occupancy</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="podTableBody">
+            <!-- JS will fill -->
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Right: AI panel -->
+      <aside class="ai-panel">
+  <div class="ai-panel-title">AI Optimizations</div>
+  <div class="ai-panel-sub">
+    Suggestions generated from prediction model (JSON export).
+  </div>
+  <div id="aiCards"><!-- JS will fill --></div>
+
+  <div class="ai-activity">
+    <div class="ai-activity-title">Live AI Activity</div>
+    <ul id="aiActivityList" class="ai-activity-list"></ul>
+  </div>
+</aside>
+
+    </section>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- p5.js for creative visualization -->
+  <script src="https://cdn.jsdelivr.net/npm/p5@1.9.0/lib/p5.min.js"></script>
+  <script src="system-activity.js"></script>
+  <script src="dashboard.js"></script>
+  
+  <!-- App Shell Loader -->
+  <script src="app_shell.js"></script>
+</body>
+</html>
+

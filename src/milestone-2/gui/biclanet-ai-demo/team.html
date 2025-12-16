@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>BiclaNet – Team & Account</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app-layout">
+    <!-- Sidebar -->
+    <div id="sidebar"></div>
+
+    <!-- Content Area -->
+    <div class="content-area">
+      <!-- Top Navigation Bar -->
+      <div id="topbar"></div>
+
+      <!-- Main Content -->
+      <main class="dashboard-main">
+        <div class="team-container">
+          <!-- Page Header -->
+          <div class="team-header">
+            <div class="team-header-content">
+              <h1 class="team-title">Team & Account</h1>
+              <p class="team-description">Manage organizations, members, and integrations.</p>
+            </div>
+          </div>
+
+          <!-- Main Content Grid -->
+          <div class="team-content-grid">
+            <!-- Left Column: Members Table & Integrations -->
+            <div class="team-left-column">
+              <!-- Members Section -->
+              <div class="team-section">
+                <div class="team-section-header">
+                  <div class="team-section-title-group">
+                    <h2 class="team-section-title">BiclaNet</h2>
+                    <p class="team-section-subtitle">A list of all users in the team organization.</p>
+                  </div>
+                  <button class="team-invite-btn">
+                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M7 2V12M2 7H12" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+                    </svg>
+                    <span>Invite Members</span>
+                  </button>
+                </div>
+
+                <!-- Filter Tabs -->
+                <div class="team-filters">
+                  <button class="team-filter-btn team-filter-btn-active">All Members</button>
+                  <button class="team-filter-btn">Admins</button>
+                  <button class="team-filter-btn">Pending</button>
+                  <div class="team-search-inline">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <circle cx="5" cy="5" r="4" stroke="#adaebc" stroke-width="1"/>
+                      <path d="M8 8L10 10" stroke="#adaebc" stroke-width="1" stroke-linecap="round"/>
+                    </svg>
+                    <input type="text" placeholder="Search by name or email..." />
+                  </div>
+                </div>
+
+                <!-- Members Table -->
+                <div class="team-table-card">
+                  <table class="team-table">
+                    <thead>
+                      <tr>
+                        <th>Name</th>
+                        <th>Role</th>
+                        <th>Last Activity</th>
+                        <th>Status</th>
+                        <th></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>
+                          <div class="team-member-cell">
+                            <div class="team-member-avatar"></div>
+                            <div class="team-member-info">
+                              <div class="team-member-name">Nadine Allan</div>
+                              <div class="team-member-email">guest@cityops.gov</div>
+                            </div>
+                          </div>
+                        </td>
+                        <td>Admin</td>
+                        <td>2 hours ago</td>
+                        <td>
+                          <span class="team-status-badge team-status-active">
+                            <span class="team-status-dot"></span>
+                            Active
+                          </span>
+                        </td>
+                        <td>
+                          <button class="team-table-menu-btn" aria-label="More options">
+                            <svg width="4" height="14" viewBox="0 0 4 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <circle cx="2" cy="2" r="1.5" fill="#5a5a5a"/>
+                              <circle cx="2" cy="7" r="1.5" fill="#5a5a5a"/>
+                              <circle cx="2" cy="12" r="1.5" fill="#5a5a5a"/>
+                            </svg>
+                          </button>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <div class="team-member-cell">
+                            <div class="team-member-avatar"></div>
+                            <div class="team-member-info">
+                              <div class="team-member-name">Inge Ackerman</div>
+                              <div class="team-member-email">guest@cityops.gov</div>
+                            </div>
+                          </div>
+                        </td>
+                        <td>Pod Manager</td>
+                        <td>1 day ago</td>
+                        <td>
+                          <span class="team-status-badge team-status-active">
+                            <span class="team-status-dot"></span>
+                            Active
+                          </span>
+                        </td>
+                        <td>
+                          <button class="team-table-menu-btn" aria-label="More options">
+                            <svg width="4" height="14" viewBox="0 0 4 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <circle cx="2" cy="2" r="1.5" fill="#5a5a5a"/>
+                              <circle cx="2" cy="7" r="1.5" fill="#5a5a5a"/>
+                              <circle cx="2" cy="12" r="1.5" fill="#5a5a5a"/>
+                            </svg>
+                          </button>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <div class="team-member-cell">
+                            <div class="team-member-avatar"></div>
+                            <div class="team-member-info">
+                              <div class="team-member-name">Andrey Dyakov</div>
+                              <div class="team-member-email">guest@cityops.gov</div>
+                            </div>
+                          </div>
+                        </td>
+                        <td>Technician</td>
+                        <td>5 days ago</td>
+                        <td>
+                          <span class="team-status-badge team-status-inactive">
+                            <span class="team-status-dot"></span>
+                            Inactive
+                          </span>
+                        </td>
+                        <td>
+                          <button class="team-table-menu-btn" aria-label="More options">
+                            <svg width="4" height="14" viewBox="0 0 4 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <circle cx="2" cy="2" r="1.5" fill="#5a5a5a"/>
+                              <circle cx="2" cy="7" r="1.5" fill="#5a5a5a"/>
+                              <circle cx="2" cy="12" r="1.5" fill="#5a5a5a"/>
+                            </svg>
+                          </button>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <div class="team-member-cell">
+                            <div class="team-member-avatar"></div>
+                            <div class="team-member-info">
+                              <div class="team-member-name">Inês Cecílio</div>
+                              <div class="team-member-email">guest@cityops.gov</div>
+                            </div>
+                          </div>
+                        </td>
+                        <td>Viewer</td>
+                        <td>Pending Invitation</td>
+                        <td>
+                          <span class="team-status-badge team-status-pending">
+                            <span class="team-status-dot"></span>
+                            Pending
+                          </span>
+                        </td>
+                        <td>
+                          <button class="team-table-menu-btn" aria-label="More options">
+                            <svg width="4" height="14" viewBox="0 0 4 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <circle cx="2" cy="2" r="1.5" fill="#5a5a5a"/>
+                              <circle cx="2" cy="7" r="1.5" fill="#5a5a5a"/>
+                              <circle cx="2" cy="12" r="1.5" fill="#5a5a5a"/>
+                            </svg>
+                          </button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              <!-- Integrations Section -->
+              <div class="team-section">
+                <div class="team-integrations-card">
+                  <div class="team-integrations-header">
+                    <h2 class="team-section-title">Integrations</h2>
+                    <p class="team-section-subtitle">Manage API keys and connected services for this organization.</p>
+                  </div>
+                  <div class="team-integrations-content">
+                    <!-- API Key -->
+                    <div class="team-integration-item">
+                      <label class="team-integration-label">API Key</label>
+                      <div class="team-api-key-box">
+                        <span class="team-api-key-value">cityops_sk_live_••••••••••••••••••••8x4d</span>
+                        <button class="team-api-key-btn" aria-label="Copy">
+                          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="4" y="4" width="7" height="7" rx="1" stroke="#5a5a5a" stroke-width="1.2"/>
+                            <path d="M3 9V3C3 2.44772 3.44772 2 4 2H10" stroke="#5a5a5a" stroke-width="1.2" stroke-linecap="round"/>
+                          </svg>
+                        </button>
+                        <button class="team-api-key-btn" aria-label="Show">
+                          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M8 3C5.33333 3 3.16667 4.5 2 6.66667C3.16667 8.83333 5.33333 10.3333 8 10.3333C10.6667 10.3333 12.8333 8.83333 14 6.66667C12.8333 4.5 10.6667 3 8 3Z" stroke="#5a5a5a" stroke-width="1.2" stroke-linecap="round"/>
+                            <circle cx="8" cy="6.66667" r="2" stroke="#5a5a5a" stroke-width="1.2"/>
+                          </svg>
+                        </button>
+                      </div>
+                    </div>
+
+                    <!-- Database Region -->
+                    <div class="team-integration-item">
+                      <label class="team-integration-label">Database Region</label>
+                      <div class="team-integration-value">PT-central-1 (N. Lisboa)</div>
+                    </div>
+
+                    <!-- Active Services -->
+                    <div class="team-integration-item">
+                      <label class="team-integration-label">Active Services</label>
+                      <div class="team-services-grid">
+                        <div class="team-service-card">
+                          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="#1a1a1a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M2 17L12 22L22 17" stroke="#1a1a1a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M2 12L12 17L22 12" stroke="#1a1a1a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                          </svg>
+                          <div>
+                            <div class="team-service-name">Slack</div>
+                            <div class="team-service-status team-service-connected">Connected</div>
+                          </div>
+                        </div>
+                        <div class="team-service-card">
+                          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M21 10C21 17 12 23 12 23C12 23 3 17 3 10C3 7.61305 3.94821 5.32387 5.63604 3.63604C7.32387 1.94821 9.61305 1 12 1C14.3869 1 16.6761 1.94821 18.364 3.63604C20.0518 5.32387 21 7.61305 21 10Z" stroke="#1a1a1a" stroke-width="1.5"/>
+                            <path d="M12 13C13.6569 13 15 11.6569 15 10C15 8.34315 13.6569 7 12 7C10.3431 7 9 8.34315 9 10C9 11.6569 10.3431 13 12 13Z" stroke="#1a1a1a" stroke-width="1.5"/>
+                          </svg>
+                          <div>
+                            <div class="team-service-name">Google Maps API</div>
+                            <div class="team-service-status team-service-connected">Connected</div>
+                          </div>
+                        </div>
+                        <div class="team-service-card">
+                          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="3" y="3" width="18" height="18" rx="2" stroke="#1a1a1a" stroke-width="1.5"/>
+                            <path d="M9 9H15M9 15H15M9 12H15" stroke="#1a1a1a" stroke-width="1.5" stroke-linecap="round"/>
+                          </svg>
+                          <div>
+                            <div class="team-service-name">Data Analytics</div>
+                            <div class="team-service-status team-service-connected">Connected</div>
+                          </div>
+                        </div>
+                        <div class="team-service-card">
+                          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="#1a1a1a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M2 17L12 22L22 17" stroke="#1a1a1a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M2 12L12 17L22 12" stroke="#1a1a1a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                          </svg>
+                          <div>
+                            <div class="team-service-name">Stripe</div>
+                            <div class="team-service-status team-service-not-configured">Not Configured</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Right Column: Organization Details -->
+            <div class="team-right-column">
+              <div class="team-org-card">
+                <h2 class="team-org-title">Organization Details</h2>
+                <div class="team-org-content">
+                  <div class="team-org-item">
+                    <span class="team-org-label">Pod Count</span>
+                    <span class="team-org-value">3</span>
+                  </div>
+                  <div class="team-org-item">
+                    <span class="team-org-label">Active Integrations</span>
+                    <span class="team-org-value">3 / 4</span>
+                  </div>
+                  <div class="team-org-item">
+                    <span class="team-org-label">API Health</span>
+                    <span class="team-org-value team-org-value-status">
+                      <span class="team-org-status-dot"></span>
+                      Normal
+                    </span>
+                  </div>
+                  <div class="team-org-item">
+                    <span class="team-org-label">System<br/>Status</span>
+                    <span class="team-org-value team-org-value-status">
+                      <span class="team-org-status-dot"></span>
+                      All Systems<br/>Operational
+                    </span>
+                  </div>
+                </div>
+                <div class="team-org-footer">
+                  <button class="team-delete-btn">Delete Organization</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- App Shell Loader -->
+  <script src="app_shell.js"></script>
+</body>
+</html>
+

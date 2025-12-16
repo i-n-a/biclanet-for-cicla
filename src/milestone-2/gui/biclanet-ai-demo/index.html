@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>BiclaNet – Smart Bike Pod Management</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+  </style>
+</head>
+<body id="top">
+  <!-- Public Navigation -->
+  <nav class="public-nav">
+    <div class="public-nav-container">
+      <a href="#top" class="public-nav-brand">
+        <img src="assets/logo.png" alt="BiclaNet" class="nav-logo" />
+        <span>BiclaNet</span>
+      </a>
+      <div class="public-nav-links">
+        <a href="#how" class="public-nav-link">How it Works</a>
+        <a href="#pricing" class="public-nav-link">Pricing</a>
+        <a href="login.html" class="public-nav-link">Sign In</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="public-hero">
+    <div class="public-hero-container">
+      <h1 class="public-hero-title">Smart Bike Pod Management</h1>
+      <p class="public-hero-subtitle">
+        AI-powered fleet management for secure bike sharing. Monitor pods, predict usage, and optimize operations with real-time insights.
+      </p>
+      <div class="public-hero-cta">
+        <a href="login.html" class="btn-primary">Request Access</a>
+        <a href="dashboard.html" class="btn-secondary">View Demo Dashboard</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- How it Works Section -->
+  <section id="how" class="public-section">
+    <div class="public-section-container">
+      <h2 class="public-section-title">How it Works</h2>
+      <div class="public-features">
+        <div class="public-feature">
+          <h3>Smart Pods</h3>
+          <p>IoT-enabled bike pods with lock controllers, presence sensors, and RFID/QR readers provide real-time occupancy data.</p>
+        </div>
+        <div class="public-feature">
+          <h3>AI Predictions</h3>
+          <p>Machine learning models analyze usage patterns to predict demand, optimize maintenance, and improve fleet utilization.</p>
+        </div>
+        <div class="public-feature">
+          <h3>Operator Dashboard</h3>
+          <p>Centralized management interface with live pod status, occupancy forecasts, and actionable AI recommendations.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing Section -->
+  <section id="pricing" class="public-section public-section-alt">
+    <div class="public-section-container">
+      <h2 class="public-section-title">Pricing</h2>
+      <div class="public-pricing">
+        <div class="public-pricing-card">
+          <h3>Starter</h3>
+          <div class="public-pricing-price">Custom</div>
+          <p>Perfect for small deployments</p>
+          <ul class="public-pricing-features">
+            <li>Up to 10 pods</li>
+            <li>Basic analytics</li>
+            <li>Email support</li>
+          </ul>
+          <a href="login.html" class="btn-secondary">Get Started</a>
+        </div>
+        <div class="public-pricing-card public-pricing-featured">
+          <h3>Enterprise</h3>
+          <div class="public-pricing-price">Custom</div>
+          <p>For large-scale operations</p>
+          <ul class="public-pricing-features">
+            <li>Unlimited pods</li>
+            <li>Advanced AI predictions</li>
+            <li>Priority support</li>
+            <li>Custom integrations</li>
+          </ul>
+          <a href="login.html" class="btn-primary">Contact Sales</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="public-footer">
+    <div class="public-footer-container">
+      <div class="public-footer-content">
+        <div class="public-footer-column">
+          <div class="public-footer-brand">
+            <div class="public-footer-logo">
+              <img src="assets/logo.png" alt="BiclaNet" class="footer-logo-img" />
+            </div>
+            <span class="public-footer-brand-name">BiclaNet</span>
+          </div>
+          <p class="public-footer-tagline">The operating system for modern micromobility infrastructure.</p>
+        </div>
+        
+        <div class="public-footer-column">
+          <h4 class="public-footer-heading">Platform</h4>
+          <ul class="public-footer-links">
+            <li><a href="#how">How It Works</a></li>
+            <li><a href="dashboard.html">Operator Dashboard</a></li>
+            <li><a href="app.html">Rider App</a></li>
+            <li><a href="#pricing">Pricing</a></li>
+          </ul>
+        </div>
+        
+        <div class="public-footer-column">
+          <h4 class="public-footer-heading">Company</h4>
+          <ul class="public-footer-links">
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#careers">Careers</a></li>
+            <li><a href="#partners">Partners</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+        
+        <div class="public-footer-column">
+          <h4 class="public-footer-heading">Connect</h4>
+          <div class="public-footer-social">
+            <a href="#" aria-label="Twitter" class="public-footer-social-link">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <path d="M18.3333 4.99999C17.5833 5.33333 16.75 5.58333 15.9167 5.66666C16.75 5.16666 17.4167 4.33333 17.75 3.33333C16.9167 3.83333 16 4.16666 15 4.41666C14.25 3.58333 13.1667 3.08333 12 3.08333C9.83333 3.08333 8.08333 4.83333 8.08333 6.99999C8.08333 7.24999 8.08333 7.49999 8.16667 7.74999C5.5 7.58333 3.16667 6.33333 1.5 4.41666C1.25 4.83333 1.08333 5.33333 1.08333 5.91666C1.08333 6.99999 1.58333 7.99999 2.41667 8.58333C1.75 8.58333 1.16667 8.41666 0.666667 8.16666V8.24999C0.666667 10.0833 2 11.5833 3.83333 11.9167C3.58333 11.9167 3.33333 12 3.08333 12C2.91667 12 2.75 12 2.58333 11.9167C2.91667 13.3333 4.16667 14.4167 5.66667 14.4167C4.5 15.25 3.08333 15.75 1.5 15.75C1.25 15.75 1 15.75 0.75 15.75C2.25 16.6667 4 17.1667 5.83333 17.1667C12 17.1667 15.8333 12 15.8333 7.41666C15.8333 7.24999 15.8333 7.16666 15.8333 6.99999C16.6667 6.41666 17.4167 5.74999 18.3333 4.99999Z" fill="currentColor"/>
+              </svg>
+            </a>
+            <a href="#" aria-label="LinkedIn" class="public-footer-social-link">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <path d="M17.5 0H2.5C1.11929 0 0 1.11929 0 2.5V17.5C0 18.8807 1.11929 20 2.5 20H17.5C18.8807 20 20 18.8807 20 17.5V2.5C20 1.11929 18.8807 0 17.5 0ZM6.25 16.25H3.33333V7.5H6.25V16.25ZM4.79167 6.25C3.88083 6.25 3.125 5.49417 3.125 4.58333C3.125 3.6725 3.88083 3 4.79167 3C5.7025 3 6.45833 3.75583 6.45833 4.66667C6.45833 5.5775 5.7025 6.25 4.79167 6.25ZM16.6667 16.25H13.75V11.6667C13.75 10.5 13.75 8.95833 12.0833 8.95833C10.4167 8.95833 10.2083 10.2917 10.2083 11.5833V16.25H7.29167V7.5H10.0833V8.875H10.125C10.4583 8.29167 11.3333 7.66667 12.5 7.66667C14.9167 7.66667 16.6667 9.20833 16.6667 12.0833V16.25Z" fill="currentColor"/>
+              </svg>
+            </a>
+            <a href="#" aria-label="GitHub" class="public-footer-social-link">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <path d="M10 0C4.477 0 0 4.477 0 10C0 14.42 2.865 18.335 6.839 19.489C7.339 19.579 7.521 19.272 7.521 19.008C7.521 18.768 7.512 18.009 7.507 17.312C4.726 17.907 4.14 15.964 4.14 15.964C3.685 14.81 3.029 14.522 3.029 14.522C2.121 13.855 3.097 13.866 3.097 13.866C4.101 13.939 4.629 14.912 4.629 14.912C5.521 16.454 6.97 16.001 7.539 15.756C7.631 15.134 7.889 14.699 8.175 14.487C5.954 14.182 3.62 13.266 3.62 9.475C3.62 8.387 4.01 7.493 4.649 6.793C4.546 6.541 4.203 5.524 4.747 4.148C4.747 4.148 5.587 3.88 7.496 5.171C8.295 4.95 9.15 4.84 10 4.836C10.85 4.84 11.705 4.95 12.504 5.171C14.413 3.88 15.253 4.148 15.253 4.148C15.797 5.524 15.454 6.541 15.351 6.793C15.99 7.493 16.38 8.387 16.38 9.475C16.38 13.276 14.041 14.179 11.815 14.482C12.155 14.747 12.479 15.367 12.479 16.312C12.479 17.769 12.465 18.908 12.465 19.008C12.465 19.275 12.644 19.585 13.152 19.488C17.135 18.331 20 14.418 20 10C20 4.477 15.523 0 10 0Z" fill="currentColor"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="public-footer-bottom">
+        <p>&copy; 2025 BiclaNet Systems Inc. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <style>
+    /* Public Page Styles */
+    .public-nav {
+      background: white;
+      border-bottom: 1px solid #f0f0f0;
+      padding: 16px 32px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .public-nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .public-nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 18px;
+      font-weight: 600;
+      color: #1a1a1a;
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+
+    .public-nav-brand:hover {
+      opacity: 0.8;
+    }
+
+    .nav-logo {
+      height: 32px;
+      width: auto;
+      object-fit: contain;
+      flex-shrink: 0;
+    }
+
+    .public-nav-links {
+      display: flex;
+      gap: 32px;
+      align-items: center;
+    }
+
+    .public-nav-link {
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 14px;
+      font-weight: 400;
+      color: #5a5a5a;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .public-nav-link:hover {
+      color: #1a1a1a;
+    }
+
+    .public-hero {
+      background: #fafafa;
+      padding: 96px 32px;
+      text-align: center;
+    }
+
+    .public-hero-container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .public-hero-title {
+      font-family: 'Space Grotesk', system-ui, sans-serif;
+      font-size: 48px;
+      font-weight: 700;
+      line-height: 1.2;
+      color: #1a1a1a;
+      margin: 0 0 16px 0;
+    }
+
+    .public-hero-subtitle {
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 20px;
+      font-weight: 400;
+      line-height: 1.6;
+      color: #5a5a5a;
+      margin: 0 0 48px 0;
+      max-width: 768px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .public-hero-cta {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .public-hero-cta .btn-primary,
+    .public-hero-cta .btn-secondary {
+      width: auto;
+      min-width: 180px;
+      padding: 12px 24px;
+      height: auto;
+      text-decoration: none;
+    }
+
+    .public-section {
+      padding: 96px 32px;
+    }
+
+    .public-section-alt {
+      background: #fafafa;
+    }
+
+    .public-section-container {
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+
+    .public-section-title {
+      font-family: 'Space Grotesk', system-ui, sans-serif;
+      font-size: 36px;
+      font-weight: 700;
+      color: #1a1a1a;
+      text-align: center;
+      margin: 0 0 48px 0;
+    }
+
+    .public-features {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 48px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .public-feature {
+      text-align: center;
+      background: white;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      padding: 40px 32px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .public-feature:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .public-feature h3 {
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 24px;
+      font-weight: 600;
+      color: #1a1a1a;
+      margin: 0 0 16px 0;
+    }
+
+    .public-feature p {
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 1.6;
+      color: #5a5a5a;
+      margin: 0;
+    }
+
+    .public-pricing {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 32px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .public-pricing-card {
+      background: white;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      padding: 40px 32px;
+      text-align: center;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .public-pricing-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .public-pricing-featured {
+      border: 2px solid #1a1a1a;
+    }
+
+    .public-pricing-card .btn-primary,
+    .public-pricing-card .btn-secondary {
+      width: 100%;
+      margin-top: 8px;
+      text-decoration: none;
+    }
+
+    .public-pricing-card h3 {
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 24px;
+      font-weight: 600;
+      color: #1a1a1a;
+      margin: 0 0 16px 0;
+    }
+
+    .public-pricing-price {
+      font-family: 'Space Grotesk', system-ui, sans-serif;
+      font-size: 36px;
+      font-weight: 700;
+      color: #1a1a1a;
+      margin: 0 0 8px 0;
+    }
+
+    .public-pricing-card > p {
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 14px;
+      color: #5a5a5a;
+      margin: 0 0 24px 0;
+    }
+
+    .public-pricing-features {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 32px 0;
+      text-align: left;
+    }
+
+    .public-pricing-features li {
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 14px;
+      color: #5a5a5a;
+      padding: 8px 0;
+      border-bottom: 1px solid #f0f0f0;
+    }
+
+    .public-pricing-features li:last-child {
+      border-bottom: none;
+    }
+
+    .public-footer {
+      background: #1a1a1a;
+      color: #fafafa;
+      padding: 48px 80px;
+    }
+
+    .public-footer-container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .public-footer-content {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 32px;
+      margin-bottom: 48px;
+    }
+
+    .public-footer-column {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .public-footer-brand {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+
+    .public-footer-logo {
+      width: 32px;
+      height: 32px;
+      background: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 6px;
+    }
+
+    .footer-logo-img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .public-footer-brand-name {
+      font-family: 'Space Grotesk', system-ui, sans-serif;
+      font-size: 20px;
+      font-weight: 700;
+      color: white;
+    }
+
+    .public-footer-tagline {
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 14px;
+      line-height: 1.5;
+      color: #d9d9d9;
+      margin: 0;
+    }
+
+    .public-footer-heading {
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 16px;
+      font-weight: 600;
+      color: white;
+      margin: 0 0 8px 0;
+    }
+
+    .public-footer-links {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .public-footer-links a {
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 14px;
+      color: #d9d9d9;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .public-footer-links a:hover {
+      color: white;
+    }
+
+    .public-footer-social {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+    }
+
+    .public-footer-social-link {
+      color: #d9d9d9;
+      transition: color 0.2s;
+    }
+
+    .public-footer-social-link:hover {
+      color: white;
+    }
+
+    .public-footer-bottom {
+      border-top: 1px solid #5a5a5a;
+      padding-top: 25px;
+      text-align: center;
+    }
+
+    .public-footer-bottom p {
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 14px;
+      color: #d9d9d9;
+      margin: 0;
+    }
+
+    @media (max-width: 1024px) {
+      .public-features {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+
+      .public-footer-content {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .public-hero {
+        padding: 64px 24px;
+      }
+
+      .public-hero-title {
+        font-size: 36px;
+      }
+
+      .public-hero-subtitle {
+        font-size: 18px;
+      }
+
+      .public-section {
+        padding: 64px 24px;
+      }
+
+      .public-section-title {
+        font-size: 28px;
+      }
+
+      .public-nav {
+        padding: 16px 24px;
+      }
+
+      .public-nav-links {
+        gap: 16px;
+        font-size: 13px;
+      }
+
+      .public-hero-cta {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .public-hero-cta .btn-primary,
+      .public-hero-cta .btn-secondary {
+        width: 100%;
+        justify-content: center;
+      }
+
+      .public-footer {
+        padding: 48px 24px;
+      }
+
+      .public-footer-content {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+
+      .public-pricing {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</body>
+</html>

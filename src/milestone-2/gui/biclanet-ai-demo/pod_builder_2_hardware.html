@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Pod Builder - Step 2: Hardware | BiclaNet</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body data-flow="pod" data-step="2">
+  <div class="app-layout">
+    <div id="sidebar"></div>
+    <div class="content-area">
+      <div id="topbar"></div>
+      <div id="stepper"></div>
+
+      <main class="builder-main">
+        <header class="builder-header">
+          <h1 class="builder-title">Step 2: Hardware & Sensors</h1>
+          <p class="builder-subtitle">Configure components for each module. Mandatory items are pre-selected. Your hardware choices directly enable and require specific features in the Rider App.</p>
+        </header>
+
+        <section class="builder-section">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+            <h2 class="builder-section-title">Core Hardware</h2>
+            <span style="font-size: 12px; color: #6b7280; font-weight: 600;">MANDATORY</span>
+          </div>
+          <p class="builder-section-description">These components are required for all pods and cannot be disabled.</p>
+          
+          <div class="hardware-grid" id="mandatoryHardware">
+            <!-- Mandatory hardware cards -->
+          </div>
+        </section>
+
+        <section class="builder-section">
+          <h2 class="builder-section-title">Access Hardware</h2>
+          <p class="builder-section-description">Choose how users will access the pod. You can enable multiple methods.</p>
+          
+          <div class="access-options" id="accessOptions">
+            <!-- Access options -->
+          </div>
+        </section>
+
+        <section class="builder-section">
+          <h2 class="builder-section-title">Lock Mechanism</h2>
+          <p class="builder-section-description">Configure the locking system for bike stands.</p>
+          
+          <div class="lock-options">
+            <div class="lock-option">
+              <label>
+                <input type="radio" name="lockType" value="solenoid" checked />
+                <div class="lock-option-card">
+                  <strong>Solenoid Lock</strong>
+                  <span>enables digital height control UI</span>
+                </div>
+              </label>
+            </div>
+            <div class="lock-option">
+              <label>
+                <input type="radio" name="lockType" value="mechanical" />
+                <div class="lock-option-card">
+                  <strong>Mechanical Lock</strong>
+                  <span>disables height UI, fallback only</span>
+                </div>
+              </label>
+            </div>
+          </div>
+        </section>
+
+        <section class="builder-section">
+          <h2 class="builder-section-title">Environment & Safety (Optional)</h2>
+          <p class="builder-section-description">Add optional sensors for environmental monitoring and safety features.</p>
+          
+          <div class="optional-sensors" id="optionalSensors">
+            <!-- Optional sensors -->
+          </div>
+        </section>
+
+        <nav class="builder-nav">
+          <button class="btn-secondary" onclick="window.location.href='pod_builder_1_model.html'">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+              <path d="M7.5 3L4.5 6L7.5 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            Back: Pod Model
+          </button>
+          <button class="btn-primary" onclick="saveAndNext()">
+            Next: Simulation
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+              <path d="M4.5 9L7.5 6L4.5 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </nav>
+      </main>
+    </div>
+  </div>
+
+  <script src="app_shell.js"></script>
+  <script src="builder_state.js"></script>
+  <script>
+
+    const mandatoryHardware = [
+      { id: 'lock', name: 'Lock Solenoid', description: 'Electromagnetic lock for securing bike stands' },
+      { id: 'presence', name: 'Presence Sensor', description: 'Detects when a bike is parked in a stand' },
+      { id: 'hub', name: 'Hub Controller', description: 'Central processing unit for pod operations' },
+      { id: 'network', name: 'Network Module', description: 'WiFi/4G connectivity for remote monitoring' }
+    ];
+
+    const optionalSensors = [
+      { id: 'tempHumidity', name: 'Temperature & Humidity Sensor', description: 'Monitor environmental conditions for maintenance and user comfort' },
+      { id: 'camera', name: 'Security Camera', description: 'Optional surveillance for safety and security monitoring' }
+    ];
+
+    function renderMandatoryHardware() {
+      const container = document.getElementById('mandatoryHardware');
+      container.innerHTML = mandatoryHardware.map(hw => `
+        <div class="hardware-card hardware-card-mandatory">
+          <div class="hardware-card-header">
+            <div>
+              <h3>${hw.name}</h3>
+              <p>${hw.description}</p>
+            </div>
+            <div class="hardware-badge">MANDATORY</div>
+          </div>
+          <div class="hardware-status">
+            <svg width="14" height="16" viewBox="0 0 14 16" fill="none">
+              <path d="M7 0L9.5 5.5L15 8L9.5 10.5L7 16L4.5 10.5L-1 8L4.5 5.5L7 0Z" fill="#1a1a1a"/>
+            </svg>
+            <span>Enabled</span>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function renderAccessOptions() {
+      const config = BuilderState.getConfig();
+      const container = document.getElementById('accessOptions');
+      container.innerHTML = `
+        <div class="access-option">
+          <label>
+            <input type="checkbox" id="accessQR" ${config.pod.access.qr ? 'checked' : ''} />
+            <div class="access-option-card">
+              <strong>QR Scanner</strong>
+              <span>Users scan QR codes with their mobile app to unlock</span>
+            </div>
+          </label>
+        </div>
+        <div class="access-option">
+          <label>
+            <input type="checkbox" id="accessRFID" ${config.pod.access.rfid ? 'checked' : ''} />
+            <div class="access-option-card">
+              <strong>RFID Reader</strong>
+              <span>Users tap RFID cards or key fobs to unlock</span>
+            </div>
+          </label>
+        </div>
+        <div class="access-option">
+          <label>
+            <input type="checkbox" id="accessBoth" ${config.pod.access.both ? 'checked' : ''} />
+            <div class="access-option-card">
+              <strong>BOTH</strong>
+              <span>Allow your customers flexibility (recommended)</span>
+            </div>
+          </label>
+        </div>
+      `;
+
+      // Handle access toggles (mutually exclusive except "both")
+      document.getElementById('accessQR').addEventListener('change', updateAccess);
+      document.getElementById('accessRFID').addEventListener('change', updateAccess);
+      document.getElementById('accessBoth').addEventListener('change', (e) => {
+        if (e.target.checked) {
+          document.getElementById('accessQR').checked = false;
+          document.getElementById('accessRFID').checked = false;
+          BuilderState.updatePodConfig({ access: { qr: false, rfid: false, both: true } });
+        } else {
+          BuilderState.updatePodConfig({ access: { qr: false, rfid: false, both: false } });
+        }
+      });
+    }
+
+    function updateAccess() {
+      const qr = document.getElementById('accessQR').checked;
+      const rfid = document.getElementById('accessRFID').checked;
+      const both = document.getElementById('accessBoth').checked;
+      
+      if (both) {
+        document.getElementById('accessQR').checked = false;
+        document.getElementById('accessRFID').checked = false;
+      }
+      
+      BuilderState.updatePodConfig({ access: { qr, rfid, both: false } });
+    }
+
+    function renderOptionalSensors() {
+      const config = BuilderState.getConfig();
+      const container = document.getElementById('optionalSensors');
+      container.innerHTML = optionalSensors.map(sensor => `
+        <div class="hardware-card">
+          <div class="hardware-card-header">
+            <div>
+              <h3>${sensor.name}</h3>
+              <p>${sensor.description}</p>
+            </div>
+            <label class="hardware-toggle">
+              <input type="checkbox" id="sensor_${sensor.id}" ${config.pod.sensors[sensor.id] ? 'checked' : ''} />
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+        </div>
+      `).join('');
+
+      optionalSensors.forEach(sensor => {
+        document.getElementById(`sensor_${sensor.id}`).addEventListener('change', (e) => {
+          const updates = {};
+          updates[sensor.id] = e.target.checked;
+          BuilderState.updatePodConfig({ sensors: Object.assign({}, config.pod.sensors, updates) });
+        });
+      });
+    }
+
+    function initPage() {
+      const config = BuilderState.getConfig();
+      
+      // Lock type
+      const lockRadios = document.querySelectorAll('input[name="lockType"]');
+      lockRadios.forEach(radio => {
+        if (radio.value === config.pod.lock.type) radio.checked = true;
+        radio.addEventListener('change', (e) => {
+          BuilderState.updatePodConfig({ lock: Object.assign({}, config.pod.lock, { type: e.target.value }) });
+        });
+      });
+
+      renderMandatoryHardware();
+      renderAccessOptions();
+      renderOptionalSensors();
+    }
+
+    function saveAndNext() {
+      window.location.href = 'pod_builder_3_simulation.html';
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initPage);
+    } else {
+      initPage();
+    }
+  </script>
+  <style>
+    .hardware-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+      margin-top: 24px;
+    }
+
+    .hardware-card {
+      background: white;
+      border: 1px solid #e5e7eb;
+      border-radius: 12px;
+      padding: 24px;
+    }
+
+    .hardware-card-mandatory {
+      border-color: #1a1a1a;
+      background: #f9fafb;
+    }
+
+    .hardware-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 16px;
+    }
+
+    .hardware-card-header h3 {
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 16px;
+      font-weight: 600;
+      color: #1a1a1a;
+      margin: 0 0 4px 0;
+    }
+
+    .hardware-card-header p {
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 14px;
+      color: #6b7280;
+      margin: 0;
+    }
+
+    .hardware-badge {
+      background: #1a1a1a;
+      color: white;
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-size: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+
+    .hardware-status {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      color: #1a1a1a;
+    }
+
+    .access-options {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-top: 24px;
+    }
+
+    .access-option label {
+      display: block;
+      cursor: pointer;
+    }
+
+    .access-option-card {
+      background: white;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      padding: 20px;
+      transition: all 0.2s;
+    }
+
+    .access-option input[type="checkbox"]:checked + .access-option-card {
+      border-color: #1a1a1a;
+      background: #f9fafb;
+    }
+
+    .access-option-card strong {
+      display: block;
+      font-size: 16px;
+      margin-bottom: 4px;
+    }
+
+    .access-option-card span {
+      font-size: 14px;
+      color: #6b7280;
+    }
+
+    .lock-options {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      margin-top: 24px;
+    }
+
+    .lock-option label {
+      display: block;
+      cursor: pointer;
+    }
+
+    .lock-option-card {
+      background: white;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      padding: 20px;
+      transition: all 0.2s;
+    }
+
+    .lock-option input[type="radio"]:checked + .lock-option-card {
+      border-color: #1a1a1a;
+      background: #f9fafb;
+    }
+
+    .lock-option-card strong {
+      display: block;
+      font-size: 16px;
+      margin-bottom: 4px;
+    }
+
+    .lock-option-card span {
+      font-size: 14px;
+      color: #6b7280;
+    }
+
+    .optional-sensors {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-top: 24px;
+    }
+
+    .hardware-toggle {
+      position: relative;
+      display: inline-block;
+      width: 44px;
+      height: 24px;
+    }
+
+    .hardware-toggle input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .toggle-slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #e5e7eb;
+      transition: .4s;
+      border-radius: 24px;
+    }
+
+    .toggle-slider:before {
+      position: absolute;
+      content: "";
+      height: 16px;
+      width: 16px;
+      left: 4px;
+      bottom: 4px;
+      background-color: white;
+      transition: .4s;
+      border-radius: 50%;
+    }
+
+    .hardware-toggle input:checked + .toggle-slider {
+      background-color: #1a1a1a;
+    }
+
+    .hardware-toggle input:checked + .toggle-slider:before {
+      transform: translateX(20px);
+    }
+  </style>
+</body>
+</html>
+

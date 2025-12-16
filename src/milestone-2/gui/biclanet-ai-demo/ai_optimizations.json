@@ -1,0 +1,17 @@
+[
+  {
+    "title": "Relocate Underused Pods",
+    "description": "Pods in Olaias show low turnover. Move 2 pods to Moscavide to capture unmet demand.",
+    "impact": "+18% Revenue"
+  },
+  {
+    "title": "Dynamic Pricing Trial",
+    "description": "Demand at IADE peaks from 12–3 PM. Implement a 1.25x price surge during these hours.",
+    "impact": "+9% Utilization"
+  },
+  {
+    "title": "Maintenance Window Suggestion",
+    "description": "POD-BKT-008A shows repeated voltage drops after 21:00. Schedule preventive maintenance overnight.",
+    "impact": "↓ Unplanned Downtime"
+  }
+]

@@ -1,0 +1,63 @@
+<!-- Top Navigation Bar -->
+<header class="top-nav">
+  <div class="top-nav-left">
+    <!-- Team Dropdown (for index.html and team.html) -->
+    <div class="top-nav-team-section" id="topNavTeamSection" style="display: flex; gap: 24px; align-items: center;">
+      <div class="team-dropdown-wrapper">
+        <button class="top-nav-team" id="teamDropdownTrigger" aria-expanded="false" aria-haspopup="true">
+          <span id="teamNameLabel">TeamName</span>
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4 6L8 10L12 6" stroke="#5a5a5a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <ul class="team-dropdown-menu" id="teamDropdownMenu" role="menu">
+          <li role="menuitem">
+            <button class="team-dropdown-item" data-team="Team Alpha">Team Alpha</button>
+          </li>
+          <li role="menuitem">
+            <button class="team-dropdown-item" data-team="Team Beta">Team Beta</button>
+          </li>
+          <li role="menuitem">
+            <button class="team-dropdown-item" data-team="Team Gamma">Team Gamma</button>
+          </li>
+        </ul>
+      </div>
+      <button class="btn-invite">
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M6 2V10M2 6H10" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+        <span>Invite Members</span>
+      </button>
+    </div>
+    <!-- Back Link (for pod.html) -->
+    <div class="top-nav-back-section" id="topNavBackSection" style="display: none;">
+      <a href="dashboard.html" class="pod-back-link">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M8.5 11L5 7L8.5 3" stroke="#5a5a5a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span>Back to Dashboard</span>
+      </a>
+    </div>
+  </div>
+  <div class="top-nav-search">
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="7" cy="7" r="5" stroke="#d9d9d9" stroke-width="1.5"/>
+      <path d="M11 11L14 14" stroke="#d9d9d9" stroke-width="1.5" stroke-linecap="round"/>
+    </svg>
+    <input type="text" id="topNavSearchInput" placeholder="Search..." />
+  </div>
+  <div class="top-nav-right">
+    <button class="top-nav-icon-btn" aria-label="Notifications">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M8 2C6.34315 2 5 3.34315 5 5V8C5 9.10457 4.10457 10 3 10H2M8 14C9.10457 14 10 13.1046 10 12H6C6 13.1046 6.89543 14 8 14Z" stroke="#5a5a5a" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+    </button>
+    <div class="top-nav-profile">
+      <div class="profile-avatar"></div>
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M4 6L8 10L12 6" stroke="#5a5a5a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+  </div>
+</header>
+

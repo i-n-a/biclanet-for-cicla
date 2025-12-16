@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>BiclaNet – Routes Pod (AI Forecast)</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="app-body">
+  <div class="demo-tabs demo-tabs-app">
+    <a class="demo-tab" href="dashboard.html">Operator Dashboard</a>
+    <a class="demo-tab demo-tab-active" href="app.html">Rider App</a>
+  </div>
+
+  <div class="app-frame">
+    <div class="app-status-bar"></div>
+
+
+    <!-- Search + filters -->
+    <header class="app-header">
+      <div class="app-search">
+        <span class="app-search-icon">🔍</span>
+        <span class="app-search-placeholder">Search for pods…</span>
+        <span class="app-search-filter">⛭</span>
+      </div>
+      <div class="app-chips">
+        <button class="chip chip-primary">⚡ E-Bike Ready</button>
+        <button class="chip">Near me</button>
+        <button class="chip">Available now</button>
+      </div>
+    </header>
+
+    <!-- Map area -->
+    <main class="app-map-area">
+  <div class="app-map">
+    <!-- p5 sketch background -->
+    <div id="mapCanvasContainer" class="map-canvas"></div>
+
+    <!-- Map "roads" -->
+    <div class="map-road map-road-a"></div>
+    <div class="map-road map-road-b"></div>
+
+    <!-- Pod markers -->
+    <div class="map-pod map-pod-primary">
+      <span class="map-pod-label">12</span>
+    </div>
+    <div class="map-pod map-pod-secondary map-pod-small">4</div>
+    <div class="map-pod map-pod-secondary map-pod-small map-pod-alt">1</div>
+
+    <!-- Settings / layer icon -->
+    <div class="map-floating-icon">⚙️</div>
+  </div>
+
+
+      <!-- Bottom sheet card -->
+      <section class="app-bottom-card">
+        <div class="app-handle"></div>
+
+        <div class="app-pod-row">
+          <div>
+            <div class="app-pod-name">Routes Pod – IADE</div>
+            <div class="app-pod-meta">
+              <span>🚶 4 min ride</span>
+              <span>·</span>
+              <span>350 m</span>
+            </div>
+          </div>
+          <span class="app-pill app-pill-blue">Recommended</span>
+        </div>
+
+        <!-- Availability -->
+        <div class="app-section-label">Availability</div>
+      <div class="app-availability-row">
+  <div class="app-availability-pills" id="availabilityPills"></div>
+  <div class="app-availability-text">
+    <span id="availabilitySpots">12 / 16</span> spots
+  </div>
+</div>
+
+
+        <!-- AI Forecast card -->
+        <div class="app-ai-forecast-card">
+          <div class="app-ai-forecast-header">
+            <span class="app-ai-dot"></span>
+            <span class="app-ai-title">AI Forecast</span>
+            <span class="app-ai-tag" id="comfortTag">High comfort</span>
+          </div>
+          <p class="app-ai-text" id="aiForecastText">
+            Loading latest comfort forecast…
+          </p>
+          <div class="app-ai-metrics">
+            <div>
+              <div class="app-ai-metric-label">Predicted occupancy</div>
+              <div class="app-ai-metric-value" id="aiOccupancyValue">—</div>
+            </div>
+            <div>
+              <div class="app-ai-metric-label">Humidity trend</div>
+              <div class="app-ai-metric-value" id="aiHumidityTrend">—</div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Bottom nav -->
+    <nav class="app-nav">
+            <div class="app-nav-fab">
+      <span>◻︎</span>
+    </div>
+      <button class="app-nav-item app-nav-item-active">
+        <!--<span>🗺</span> -->
+        <span>Map</span>
+      </button>
+      <button class="app-nav-item">
+    <!----   <span>📅</span>-->
+        <span>Reservations</span>
+      </button>
+      <button class="app-nav-item">
+       <!--- <span>📊</span> -->
+        <span>Insights</span>
+      </button>
+      <button class="app-nav-item">
+       <!--- <span>👤</span> -->
+        <span>Profile</span>
+      </button>
+    </nav>
+  </div>
+
+  <!-- existing scripts for the demo -->
+  <script src="p5.js"></script>
+  <!-- p5.sound is optional; include only if your sketch needs it -->
+  <!-- <script src="p5.sound.min.js"></script> -->
+
+  <script src="sketch.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>App Builder - Step 1: Brand Identity | BiclaNet</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body data-flow="app" data-step="1">
+  <div class="app-layout">
+    <div id="sidebar"></div>
+    <div class="content-area">
+      <div id="topbar"></div>
+      <div id="stepper"></div>
+
+      <main class="builder-main">
+        <header class="builder-header">
+          <h1 class="builder-title">Step 1: Brand Identity</h1>
+          <p class="builder-subtitle">Customize the look and feel of your team's mobile app.</p>
+        </header>
+
+        <div class="branding-layout">
+          <div class="branding-controls">
+            <section class="builder-section">
+              <h2 class="builder-section-title">Logo</h2>
+              <p class="builder-section-description">Upload your organization's logo (recommended: 512x512px, PNG or SVG).</p>
+              
+              <div class="logo-upload">
+                <div class="logo-preview" id="logoPreview">
+                  <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+                    <rect width="48" height="48" rx="8" fill="#e5e7eb"/>
+                    <path d="M24 16V32M16 24H32" stroke="#9ca3af" stroke-width="2" stroke-linecap="round"/>
+                  </svg>
+                </div>
+                <div class="logo-upload-info">
+                  <p>No logo uploaded</p>
+                  <button type="button" class="btn-secondary" onclick="document.getElementById('logoFile').click()">
+                    Upload Logo
+                  </button>
+                </div>
+                <input type="file" id="logoFile" accept="image/png,image/svg+xml" style="display: none;" />
+              </div>
+            </section>
+
+            <section class="builder-section">
+              <h2 class="builder-section-title">Color Palette</h2>
+              <p class="builder-section-description">Define your brand colors for the app interface.</p>
+              
+              <div class="color-grid">
+                <div class="color-input">
+                  <label>Primary</label>
+                  <div class="color-picker-wrapper">
+                    <input type="color" id="colorPrimary" value="#1A1A1A" />
+                    <input type="text" id="colorPrimaryText" value="#1A1A1A" />
+                  </div>
+                </div>
+                <div class="color-input">
+                  <label>Secondary</label>
+                  <div class="color-picker-wrapper">
+                    <input type="color" id="colorSecondary" value="#5A5A5A" />
+                    <input type="text" id="colorSecondaryText" value="#5A5A5A" />
+                  </div>
+                </div>
+                <div class="color-input">
+                  <label>Accent</label>
+                  <div class="color-picker-wrapper">
+                    <input type="color" id="colorAccent" value="#7CA8D6" />
+                    <input type="text" id="colorAccentText" value="#7CA8D6" />
+                  </div>
+                </div>
+                <div class="color-input">
+                  <label>Background</label>
+                  <div class="color-picker-wrapper">
+                    <input type="color" id="colorBg" value="#FAFAFA" />
+                    <input type="text" id="colorBgText" value="#FAFAFA" />
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <section class="builder-section">
+              <h2 class="builder-section-title">Typography</h2>
+              <p class="builder-section-description">Customize the fonts for your rider mobile app.</p>
+              
+              <div class="typography-controls">
+                <div class="typography-input">
+                  <label>Headings</label>
+                  <select id="fontHeadings" class="form-select">
+                    <option value="Space Grotesk">Space Grotesk</option>
+                    <option value="Inter">Inter</option>
+                    <option value="Roboto">Roboto</option>
+                    <option value="Open Sans">Open Sans</option>
+                  </select>
+                </div>
+                <div class="typography-input">
+                  <label>Body Text</label>
+                  <select id="fontBody" class="form-select">
+                    <option value="Inter">Inter</option>
+                    <option value="Space Grotesk">Space Grotesk</option>
+                    <option value="Roboto">Roboto</option>
+                    <option value="Open Sans">Open Sans</option>
+                  </select>
+                </div>
+              </div>
+            </section>
+          </div>
+
+          <div class="branding-preview">
+            <section class="builder-section">
+              <h2 class="builder-section-title">Live App Preview</h2>
+              <p class="builder-section-description">See how your branding looks in the app.</p>
+              
+              <div class="phone-preview" id="phonePreview">
+                <div class="phone-screen">
+                  <div class="preview-header">
+                    <div class="preview-logo" id="previewLogo">Logo</div>
+                    <div class="preview-title">BiclaNet</div>
+                  </div>
+                  <div class="preview-content">
+                    <div class="preview-card">
+                      <h3 class="preview-card-title">Welcome</h3>
+                      <p class="preview-card-text">Your branded app preview</p>
+                    </div>
+                    <button class="preview-button">Get Started</button>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </div>
+        </div>
+
+        <nav class="builder-nav">
+          <div></div>
+          <button class="btn-primary" onclick="saveAndNext()">
+            Next: Layout & Features
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+              <path d="M4.5 9L7.5 6L4.5 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </nav>
+      </main>
+    </div>
+  </div>
+
+  <script src="app_shell.js"></script>
+  <script src="builder_state.js"></script>
+  <script>
+
+    function updateBranding() {
+      const config = BuilderState.getConfig();
+      const root = document.documentElement;
+      
+      root.style.setProperty('--brand-primary', config.app.branding.primary);
+      root.style.setProperty('--brand-secondary', config.app.branding.secondary);
+      root.style.setProperty('--brand-accent', config.app.branding.accent);
+      root.style.setProperty('--brand-bg', config.app.branding.bg);
+      root.style.setProperty('--brand-font-headings', config.app.branding.fontHeadings);
+      root.style.setProperty('--brand-font-body', config.app.branding.fontBody);
+      
+      // Update phone preview
+      const preview = document.getElementById('phonePreview');
+      preview.style.setProperty('--preview-primary', config.app.branding.primary);
+      preview.style.setProperty('--preview-secondary', config.app.branding.secondary);
+      preview.style.setProperty('--preview-accent', config.app.branding.accent);
+      preview.style.setProperty('--preview-bg', config.app.branding.bg);
+    }
+
+    function initPage() {
+      const config = BuilderState.getConfig();
+      
+      // Set color inputs
+      document.getElementById('colorPrimary').value = config.app.branding.primary;
+      document.getElementById('colorPrimaryText').value = config.app.branding.primary;
+      document.getElementById('colorSecondary').value = config.app.branding.secondary;
+      document.getElementById('colorSecondaryText').value = config.app.branding.secondary;
+      document.getElementById('colorAccent').value = config.app.branding.accent;
+      document.getElementById('colorAccentText').value = config.app.branding.accent;
+      document.getElementById('colorBg').value = config.app.branding.bg;
+      document.getElementById('colorBgText').value = config.app.branding.bg;
+      
+      // Set font selects
+      document.getElementById('fontHeadings').value = config.app.branding.fontHeadings;
+      document.getElementById('fontBody').value = config.app.branding.fontBody;
+      
+      // Color picker handlers
+      ['Primary', 'Secondary', 'Accent', 'Bg'].forEach(color => {
+        const picker = document.getElementById(`color${color}`);
+        const text = document.getElementById(`color${color}Text`);
+        
+        picker.addEventListener('input', (e) => {
+          text.value = e.target.value;
+          const key = color.toLowerCase() === 'bg' ? 'bg' : color.toLowerCase();
+          BuilderState.updateAppConfig({
+            branding: Object.assign({}, config.app.branding, { [key]: e.target.value })
+          });
+          updateBranding();
+        });
+        
+        text.addEventListener('change', (e) => {
+          if (/^#[0-9A-F]{6}$/i.test(e.target.value)) {
+            picker.value = e.target.value;
+            const key = color.toLowerCase() === 'bg' ? 'bg' : color.toLowerCase();
+            BuilderState.updateAppConfig({
+              branding: Object.assign({}, config.app.branding, { [key]: e.target.value })
+            });
+            updateBranding();
+          }
+        });
+      });
+      
+      // Font handlers
+      document.getElementById('fontHeadings').addEventListener('change', (e) => {
+        BuilderState.updateAppConfig({
+          branding: Object.assign({}, config.app.branding, { fontHeadings: e.target.value })
+        });
+        updateBranding();
+      });
+      
+      document.getElementById('fontBody').addEventListener('change', (e) => {
+        BuilderState.updateAppConfig({
+          branding: Object.assign({}, config.app.branding, { fontBody: e.target.value })
+        });
+        updateBranding();
+      });
+      
+      // Logo upload
+      document.getElementById('logoFile').addEventListener('change', (e) => {
+        const file = e.target.files[0];
+        if (file) {
+          const reader = new FileReader();
+          reader.onload = (event) => {
+            document.getElementById('logoPreview').innerHTML = `<img src="${event.target.result}" alt="Logo" />`;
+            document.querySelector('.logo-upload-info p').textContent = file.name;
+          };
+          reader.readAsDataURL(file);
+        }
+      });
+      
+      updateBranding();
+    }
+
+    function saveAndNext() {
+      window.location.href = 'app_builder_2_features.html';
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initPage);
+    } else {
+      initPage();
+    }
+  </script>
+  <style>
+    :root {
+      --brand-primary: #1A1A1A;
+      --brand-secondary: #5A5A5A;
+      --brand-accent: #7CA8D6;
+      --brand-bg: #FAFAFA;
+      --brand-font-headings: 'Space Grotesk', sans-serif;
+      --brand-font-body: 'Inter', sans-serif;
+    }
+
+    .branding-layout {
+      display: grid;
+      grid-template-columns: 1fr 400px;
+      gap: 24px;
+      margin-bottom: 32px;
+    }
+
+    .logo-upload {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-top: 24px;
+    }
+
+    .logo-preview {
+      width: 80px;
+      height: 80px;
+      border-radius: 8px;
+      background: #f3f4f6;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .logo-preview img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      border-radius: 8px;
+    }
+
+    .logo-upload-info p {
+      margin: 0 0 8px 0;
+      font-size: 14px;
+      color: #6b7280;
+    }
+
+    .color-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+      margin-top: 24px;
+    }
+
+    .color-input label {
+      display: block;
+      font-size: 14px;
+      font-weight: 500;
+      margin-bottom: 8px;
+      color: #1a1a1a;
+    }
+
+    .color-picker-wrapper {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .color-picker-wrapper input[type="color"] {
+      width: 60px;
+      height: 40px;
+      border: 1px solid #e5e7eb;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .color-picker-wrapper input[type="text"] {
+      flex: 1;
+      padding: 8px 12px;
+      border: 1px solid #e5e7eb;
+      border-radius: 6px;
+      font-family: 'Monaco', monospace;
+      font-size: 14px;
+    }
+
+    .typography-controls {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      margin-top: 24px;
+    }
+
+    .typography-input label {
+      display: block;
+      font-size: 14px;
+      font-weight: 500;
+      margin-bottom: 8px;
+      color: #1a1a1a;
+    }
+
+    .phone-preview {
+      margin-top: 24px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .phone-screen {
+      width: 300px;
+      height: 600px;
+      background: var(--preview-bg, #FAFAFA);
+      border-radius: 24px;
+      padding: 24px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+      border: 8px solid #1a1a1a;
+    }
+
+    .preview-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 32px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    }
+
+    .preview-logo {
+      width: 40px;
+      height: 40px;
+      background: var(--preview-primary, #1A1A1A);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .preview-title {
+      font-family: var(--brand-font-headings, 'Space Grotesk', sans-serif);
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--preview-primary, #1A1A1A);
+    }
+
+    .preview-content {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .preview-card {
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .preview-card-title {
+      font-family: var(--brand-font-headings, 'Space Grotesk', sans-serif);
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--preview-primary, #1A1A1A);
+      margin: 0 0 8px 0;
+    }
+
+    .preview-card-text {
+      font-family: var(--brand-font-body, 'Inter', sans-serif);
+      font-size: 14px;
+      color: var(--preview-secondary, #5A5A5A);
+      margin: 0;
+    }
+
+    .preview-button {
+      background: var(--preview-accent, #7CA8D6);
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-family: var(--brand-font-body, 'Inter', sans-serif);
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+    }
+
+    @media (max-width: 1200px) {
+      .branding-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</body>
+</html>
+

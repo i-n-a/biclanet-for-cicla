@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Pod Builder - Step 1: Model | BiclaNet</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body data-flow="pod" data-step="1">
+  <div class="app-layout">
+    <!-- Sidebar -->
+    <div id="sidebar"></div>
+
+    <!-- Content Area -->
+    <div class="content-area">
+      <!-- Top Navigation Bar -->
+      <div id="topbar"></div>
+
+      <!-- Stepper -->
+      <div id="stepper"></div>
+
+      <!-- Main Content -->
+      <main class="builder-main">
+        <header class="builder-header">
+          <h1 class="builder-title">Step 1: Pod Model</h1>
+          <p class="builder-subtitle">Select a pod model and configure basic deployment settings.</p>
+        </header>
+
+        <section class="builder-section">
+          <h2 class="builder-section-title">Pod Models</h2>
+          <p class="builder-section-description">Choose a pre-configured pod model or upload a custom design.</p>
+          
+          <div class="model-grid" id="modelGrid">
+            <!-- Models will be rendered by JS -->
+          </div>
+        </section>
+
+        <section class="builder-section">
+          <h2 class="builder-section-title">Capacity</h2>
+          <p class="builder-section-description">Set the number of bike parking spaces for this pod.</p>
+          
+          <div class="capacity-control">
+            <input type="range" id="capacitySlider" min="4" max="24" value="8" step="2" />
+            <div class="capacity-display">
+              <span id="capacityValue">8</span> bikes
+            </div>
+          </div>
+        </section>
+
+        <section class="builder-section">
+          <h2 class="builder-section-title">Deployment Context</h2>
+          <p class="builder-section-description">Select the environments where this pod will be deployed.</p>
+          
+          <div class="context-chips" id="contextChips">
+            <label class="context-chip">
+              <input type="checkbox" value="Indoor" />
+              <span>Indoor</span>
+            </label>
+            <label class="context-chip">
+              <input type="checkbox" value="Outdoor" checked />
+              <span>Outdoor</span>
+            </label>
+            <label class="context-chip">
+              <input type="checkbox" value="Campus" />
+              <span>Campus</span>
+            </label>
+            <label class="context-chip">
+              <input type="checkbox" value="City" checked />
+              <span>City</span>
+            </label>
+          </div>
+        </section>
+
+        <section class="builder-section">
+          <h2 class="builder-section-title">Custom Upload (Optional)</h2>
+          <p class="builder-section-description">Upload a custom pod design file (CAD, 3D model, or specifications).</p>
+          
+          <div class="upload-area">
+            <input type="file" id="customUpload" accept=".stl,.obj,.dwg,.pdf" style="display: none;" />
+            <button type="button" class="btn-secondary" onclick="document.getElementById('customUpload').click()">
+              Choose File
+            </button>
+            <span id="uploadFileName" class="upload-file-name"></span>
+          </div>
+        </section>
+
+        <nav class="builder-nav">
+          <div></div>
+          <button class="btn-primary" onclick="saveAndNext()">
+            Next: Hardware
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+              <path d="M4.5 9L7.5 6L4.5 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </nav>
+      </main>
+    </div>
+  </div>
+
+  <script src="app_shell.js"></script>
+  <script src="builder_state.js"></script>
+  <script>
+
+    const models = [
+      { id: 'standard', name: 'Standard Pod', description: 'A sleek, minimalist design for standard bike parking. Clean lines, neutral tones.', capacity: 12, footprint: '1.2m' },
+      { id: 'routes', name: 'Routes Pod', description: 'Optimized for high-traffic routes and transit hubs. Compact footprint.', capacity: 12, footprint: '1m' },
+      { id: 'eclo', name: 'Eclo Pod', description: 'Sustainable design with rooftop garden. Vertical storage system.', capacity: 12, footprint: '1.5m' }
+    ];
+
+    function renderModels() {
+      const config = BuilderState.getConfig();
+      const grid = document.getElementById('modelGrid');
+      grid.innerHTML = models.map(model => `
+        <div class="model-card ${config.pod.model === model.name ? 'model-card-selected' : ''}" 
+             data-model="${model.id}" 
+             onclick="selectModel('${model.id}', '${model.name}')">
+          <div class="model-card-header">
+            <h3>${model.name}</h3>
+            ${config.pod.model === model.name ? '<div class="model-check">✓</div>' : ''}
+          </div>
+          <div class="model-card-image">
+            <div class="model-placeholder">${model.name}</div>
+          </div>
+          <p class="model-card-description">${model.description}</p>
+          <div class="model-card-specs">
+            <div class="model-spec">
+              <span class="spec-label">Capacity:</span>
+              <span class="spec-value">${model.capacity}</span>
+            </div>
+            <div class="model-spec">
+              <span class="spec-label">Footprint:</span>
+              <span class="spec-value">${model.footprint}</span>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function selectModel(id, name) {
+      BuilderState.updatePodConfig({ model: name });
+      renderModels();
+    }
+
+    function initPage() {
+      const config = BuilderState.getConfig();
+      
+      // Set capacity slider
+      const slider = document.getElementById('capacitySlider');
+      slider.value = config.pod.capacity;
+      document.getElementById('capacityValue').textContent = config.pod.capacity;
+      
+      slider.addEventListener('input', (e) => {
+        const value = parseInt(e.target.value);
+        document.getElementById('capacityValue').textContent = value;
+        BuilderState.updatePodConfig({ capacity: value });
+      });
+
+      // Set context chips
+      const chips = document.querySelectorAll('#contextChips input[type="checkbox"]');
+      chips.forEach(chip => {
+        chip.checked = config.pod.context.includes(chip.value);
+        chip.addEventListener('change', () => {
+          const checked = Array.from(chips).filter(c => c.checked).map(c => c.value);
+          BuilderState.updatePodConfig({ context: checked });
+        });
+      });
+
+      renderModels();
+    }
+
+    function saveAndNext() {
+      window.location.href = 'pod_builder_2_hardware.html';
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initPage);
+    } else {
+      initPage();
+    }
+  </script>
+  <style>
+    .model-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
+      margin-top: 24px;
+    }
+
+    .model-card {
+      background: white;
+      border: 2px solid #e5e7eb;
+      border-radius: 12px;
+      padding: 24px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .model-card:hover {
+      border-color: #1a1a1a;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .model-card-selected {
+      border-color: #1a1a1a;
+      background: #f9fafb;
+    }
+
+    .model-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+
+    .model-card-header h3 {
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 18px;
+      font-weight: 600;
+      color: #1a1a1a;
+      margin: 0;
+    }
+
+    .model-check {
+      width: 20px;
+      height: 20px;
+      background: #1a1a1a;
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+    }
+
+    .model-card-image {
+      width: 100%;
+      height: 160px;
+      background: #f3f4f6;
+      border-radius: 8px;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .model-placeholder {
+      color: #9ca3af;
+      font-size: 14px;
+    }
+
+    .model-card-description {
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 14px;
+      color: #6b7280;
+      margin: 0 0 16px 0;
+      line-height: 1.5;
+    }
+
+    .model-card-specs {
+      display: flex;
+      gap: 24px;
+    }
+
+    .model-spec {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .spec-label {
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 12px;
+      color: #6b7280;
+    }
+
+    .spec-value {
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 20px;
+      font-weight: 600;
+      color: #1a1a1a;
+    }
+
+    .capacity-control {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      margin-top: 24px;
+    }
+
+    #capacitySlider {
+      flex: 1;
+      height: 8px;
+      background: #e5e7eb;
+      border-radius: 4px;
+      outline: none;
+      -webkit-appearance: none;
+    }
+
+    #capacitySlider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 20px;
+      height: 20px;
+      background: #1a1a1a;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+
+    #capacitySlider::-moz-range-thumb {
+      width: 20px;
+      height: 20px;
+      background: #1a1a1a;
+      border-radius: 50%;
+      cursor: pointer;
+      border: none;
+    }
+
+    .capacity-display {
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 18px;
+      font-weight: 600;
+      color: #1a1a1a;
+      min-width: 80px;
+    }
+
+    .context-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 24px;
+    }
+
+    .context-chip {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      background: white;
+      border: 1px solid #e5e7eb;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 14px;
+      color: #1a1a1a;
+    }
+
+    .context-chip:hover {
+      border-color: #1a1a1a;
+    }
+
+    .context-chip input[type="checkbox"] {
+      margin: 0;
+    }
+
+    .context-chip input[type="checkbox"]:checked + span,
+    .context-chip:has(input[type="checkbox"]:checked) {
+      background: #1a1a1a;
+      color: white;
+      border-color: #1a1a1a;
+    }
+
+    .upload-area {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-top: 24px;
+    }
+
+    .upload-file-name {
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 14px;
+      color: #6b7280;
+    }
+  </style>
+</body>
+</html>
+

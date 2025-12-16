@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>App Builder - Step 3: Preview & Validation | BiclaNet</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body data-flow="app" data-step="3">
+  <div class="app-layout">
+    <div id="sidebar"></div>
+    <div class="content-area">
+      <div id="topbar"></div>
+      <div id="stepper"></div>
+
+      <main class="builder-main">
+        <header class="builder-header">
+          <h1 class="builder-title">Step 3: Preview & Validation</h1>
+          <p class="builder-subtitle">Confirm your settings and submit your app for publication.</p>
+        </header>
+
+        <div class="preview-layout">
+          <div class="preview-main">
+            <section class="builder-section">
+              <h2 class="builder-section-title">Dependency Validation</h2>
+              <p class="builder-section-description">Verify that your app features match your pod hardware configuration.</p>
+              
+              <div class="validation-list" id="validationList">
+                <!-- Validation items -->
+              </div>
+              
+              <div class="validation-warning" id="validationWarning" style="display: none;">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                  <path d="M10 2L2 18H18L10 2Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M10 8V12M10 14H10.01" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                </svg>
+                <div>
+                  <strong>Warning</strong>
+                  <p id="warningMessage"></p>
+                </div>
+              </div>
+            </section>
+
+            <section class="builder-section">
+              <h2 class="builder-section-title">Final Review</h2>
+              
+              <div class="review-summary">
+                <div class="review-item">
+                  <span>Branding</span>
+                  <button class="review-edit-btn" onclick="window.location.href='app_builder_1_branding.html'">Edit</button>
+                </div>
+                <div class="review-item">
+                  <span>Features</span>
+                  <button class="review-edit-btn" onclick="window.location.href='app_builder_2_features.html'">Edit</button>
+                </div>
+              </div>
+            </section>
+          </div>
+
+          <div class="preview-sidebar">
+            <section class="builder-section">
+              <h2 class="builder-section-title">Interactive Preview</h2>
+              <p class="builder-section-description">Navigate through the app screens.</p>
+              
+              <div class="phone-preview-container">
+                <div class="phone-preview" id="phonePreview">
+                  <div class="phone-screen" id="phoneScreen">
+                    <!-- Screen content will be rendered by JS -->
+                  </div>
+                </div>
+                
+                <div class="preview-nav">
+                  <button class="preview-nav-btn" onclick="navigateScreen('prev')" id="prevBtn" disabled>
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                      <path d="M10 12L6 8L10 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </button>
+                  <span class="preview-nav-info" id="screenInfo">Screen 1 of 4</span>
+                  <button class="preview-nav-btn" onclick="navigateScreen('next')" id="nextBtn">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                      <path d="M6 4L10 8L6 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </section>
+          </div>
+        </div>
+
+        <nav class="builder-nav">
+          <button class="btn-secondary" onclick="window.location.href='app_builder_2_features.html'">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+              <path d="M7.5 3L4.5 6L7.5 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            Back: Layout & Features
+          </button>
+          <button class="btn-primary" onclick="publishApp()">
+            Publish App
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+              <path d="M4.5 9L7.5 6L4.5 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </nav>
+      </main>
+    </div>
+  </div>
+
+  <script src="app_shell.js"></script>
+  <script src="builder_state.js"></script>
+  <script>
+
+    let currentScreen = 0;
+    const screens = [
+      { title: 'Map View', content: 'Pod Map' },
+      { title: 'Pod Details', content: 'Pod Card' },
+      { title: 'Unlock', content: 'Unlock Screen' },
+      { title: 'Confirmation', content: 'Success!' }
+    ];
+
+    function renderValidation() {
+      const config = BuilderState.getConfig();
+      const container = document.getElementById('validationList');
+      const warning = document.getElementById('validationWarning');
+      
+      const validations = [];
+      
+      // Check QR
+      if (config.pod.access.qr || config.pod.access.both) {
+        validations.push({ feature: 'QR Scanner', status: 'required', enabled: true });
+      }
+      
+      // Check RFID
+      if (config.pod.access.rfid || config.pod.access.both) {
+        validations.push({ feature: 'RFID Reader', status: 'required', enabled: true });
+      }
+      
+      // Check Lock
+      if (config.pod.lock.type) {
+        validations.push({ feature: 'Lock Solenoid', status: 'required', enabled: true });
+      }
+      
+      // Check Temp/Humidity
+      if (config.pod.sensors.tempHumidity) {
+        validations.push({ feature: 'Temp/Humidity', status: 'optional', enabled: config.app.features.environmentCard });
+      }
+      
+      // Check Camera
+      if (config.pod.sensors.camera) {
+        validations.push({ feature: 'Camera', status: 'optional', enabled: config.app.features.surveillanceBadge });
+      } else if (config.app.features.surveillanceBadge) {
+        // Warning: surveillance badge enabled but no camera
+        warning.style.display = 'flex';
+        document.getElementById('warningMessage').textContent = 'Surveillance Badge is enabled but pod does not have a camera sensor. This feature will not function.';
+      } else {
+        warning.style.display = 'none';
+      }
+      
+      container.innerHTML = validations.map(v => `
+        <div class="validation-item">
+          <div class="validation-icon validation-${v.status}">
+            ${v.status === 'required' ? '✓' : '○'}
+          </div>
+          <div class="validation-content">
+            <strong>${v.feature}</strong>
+            <span>${v.status === 'required' ? 'REQUIRED' : 'OPTIONAL'}</span>
+          </div>
+          <div class="validation-status ${v.enabled ? 'validation-enabled' : 'validation-disabled'}">
+            ${v.enabled ? 'Enabled' : 'Disabled'}
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function renderScreen(index) {
+      const screen = screens[index];
+      const container = document.getElementById('phoneScreen');
+      
+      container.innerHTML = `
+        <div class="preview-header">
+          <div class="preview-logo">Logo</div>
+          <div class="preview-title">BiclaNet</div>
+        </div>
+        <div class="preview-content">
+          <div class="preview-card">
+            <h3 class="preview-card-title">${screen.title}</h3>
+            <p class="preview-card-text">${screen.content}</p>
+          </div>
+        </div>
+      `;
+      
+      // Update nav
+      document.getElementById('screenInfo').textContent = `Screen ${index + 1} of ${screens.length}`;
+      document.getElementById('prevBtn').disabled = index === 0;
+      document.getElementById('nextBtn').disabled = index === screens.length - 1;
+    }
+
+    function navigateScreen(direction) {
+      if (direction === 'next' && currentScreen < screens.length - 1) {
+        currentScreen++;
+      } else if (direction === 'prev' && currentScreen > 0) {
+        currentScreen--;
+      }
+      renderScreen(currentScreen);
+    }
+
+    function publishApp() {
+      alert('App published successfully!');
+      window.location.href = 'dashboard.html';
+    }
+
+    function initPage() {
+      renderValidation();
+      renderScreen(0);
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initPage);
+    } else {
+      initPage();
+    }
+  </script>
+  <style>
+    .preview-layout {
+      display: grid;
+      grid-template-columns: 1fr 400px;
+      gap: 24px;
+      margin-bottom: 32px;
+    }
+
+    .validation-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 24px;
+    }
+
+    .validation-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 16px;
+      background: white;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+    }
+
+    .validation-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      flex-shrink: 0;
+    }
+
+    .validation-required {
+      background: #1a1a1a;
+      color: white;
+    }
+
+    .validation-optional {
+      background: #e5e7eb;
+      color: #6b7280;
+    }
+
+    .validation-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .validation-content strong {
+      font-size: 14px;
+      font-weight: 600;
+      color: #1a1a1a;
+    }
+
+    .validation-content span {
+      font-size: 12px;
+      color: #6b7280;
+      text-transform: uppercase;
+    }
+
+    .validation-status {
+      padding: 4px 12px;
+      border-radius: 12px;
+      font-size: 12px;
+      font-weight: 500;
+    }
+
+    .validation-enabled {
+      background: #d1fae5;
+      color: #065f46;
+    }
+
+    .validation-disabled {
+      background: #fee2e2;
+      color: #991b1b;
+    }
+
+    .validation-warning {
+      display: flex;
+      gap: 12px;
+      padding: 16px;
+      background: #fef3c7;
+      border: 1px solid #f59e0b;
+      border-radius: 8px;
+      margin-top: 24px;
+      color: #92400e;
+    }
+
+    .validation-warning svg {
+      flex-shrink: 0;
+      stroke: currentColor;
+    }
+
+    .validation-warning strong {
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .validation-warning p {
+      margin: 0;
+      font-size: 14px;
+    }
+
+    .review-summary {
+      margin-top: 24px;
+    }
+
+    .review-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px;
+      background: white;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      margin-bottom: 12px;
+    }
+
+    .review-item span {
+      font-size: 14px;
+      font-weight: 500;
+      color: #1a1a1a;
+    }
+
+    .review-edit-btn {
+      padding: 6px 12px;
+      background: transparent;
+      border: 1px solid #e5e7eb;
+      border-radius: 6px;
+      font-size: 12px;
+      color: #6b7280;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .review-edit-btn:hover {
+      border-color: #1a1a1a;
+      color: #1a1a1a;
+    }
+
+    .phone-preview-container {
+      margin-top: 24px;
+    }
+
+    .phone-preview {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 16px;
+    }
+
+    .phone-screen {
+      width: 300px;
+      height: 500px;
+      background: #FAFAFA;
+      border-radius: 24px;
+      padding: 24px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+      border: 8px solid #1a1a1a;
+    }
+
+    .preview-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 32px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    }
+
+    .preview-logo {
+      width: 40px;
+      height: 40px;
+      background: #1A1A1A;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .preview-title {
+      font-size: 20px;
+      font-weight: 600;
+      color: #1A1A1A;
+    }
+
+    .preview-content {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .preview-card {
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .preview-card-title {
+      font-size: 18px;
+      font-weight: 600;
+      color: #1A1A1A;
+      margin: 0 0 8px 0;
+    }
+
+    .preview-card-text {
+      font-size: 14px;
+      color: #5A5A5A;
+      margin: 0;
+    }
+
+    .preview-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px;
+      background: white;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+    }
+
+    .preview-nav-btn {
+      width: 36px;
+      height: 36px;
+      background: white;
+      border: 1px solid #e5e7eb;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s;
+      color: #1a1a1a;
+    }
+
+    .preview-nav-btn:hover:not(:disabled) {
+      border-color: #1a1a1a;
+      background: #f9fafb;
+    }
+
+    .preview-nav-btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .preview-nav-info {
+      font-size: 12px;
+      color: #6b7280;
+    }
+
+    @media (max-width: 1200px) {
+      .preview-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</body>
+</html>
+

@@ -1,0 +1,117 @@
+<!-- Step Indicator Component -->
+<div class="stepper-container" id="stepperContainer">
+  <ol class="stepper-list" id="stepperList">
+    <!-- Steps will be rendered by JS -->
+  </ol>
+  <div class="stepper-step-info">
+    <span id="stepperStepInfo">Step 1 of 4</span>
+  </div>
+</div>
+
+<script>
+(function() {
+  'use strict';
+
+  const STEP_CONFIGS = {
+    pod: {
+      steps: [
+        { label: 'Pod Builder', key: 'pod_builder' },
+        { label: 'Hardware', key: 'hardware' },
+        { label: 'Simulation', key: 'simulation' },
+        { label: 'Review', key: 'review' }
+      ],
+      routes: [
+        'pod_builder_1_model.html',
+        'pod_builder_2_hardware.html',
+        'pod_builder_3_simulation.html',
+        'pod_builder_4_review.html'
+      ]
+    },
+    app: {
+      steps: [
+        { label: 'Brand Identity', key: 'branding' },
+        { label: 'Layout & Features', key: 'features' },
+        { label: 'Preview & Validation', key: 'preview' }
+      ],
+      routes: [
+        'app_builder_1_branding.html',
+        'app_builder_2_features.html',
+        'app_builder_3_preview.html'
+      ]
+    }
+  };
+
+  function initStepper() {
+    const body = document.body;
+    const flow = body.getAttribute('data-flow');
+    const stepIndex = parseInt(body.getAttribute('data-step'), 10) - 1;
+    const container = document.getElementById('stepperContainer');
+    const list = document.getElementById('stepperList');
+    const info = document.getElementById('stepperStepInfo');
+
+    if (!flow || isNaN(stepIndex) || !container) return;
+
+    const config = STEP_CONFIGS[flow];
+    if (!config) return;
+
+    // Clear existing
+    list.innerHTML = '';
+
+    // Render steps
+    config.steps.forEach((step, index) => {
+      const li = document.createElement('li');
+      li.className = 'stepper-item';
+      
+      if (index < stepIndex) {
+        li.classList.add('stepper-item-completed');
+        li.innerHTML = `
+          <div class="stepper-icon stepper-icon-completed">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+              <path d="M10 3L4.5 8.5L2 6" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <span class="stepper-label">${step.label}</span>
+        `;
+      } else if (index === stepIndex) {
+        li.classList.add('stepper-item-active');
+        li.innerHTML = `
+          <div class="stepper-icon stepper-icon-active">
+            <span>${index + 1}</span>
+          </div>
+          <span class="stepper-label">${step.label}</span>
+        `;
+      } else {
+        li.classList.add('stepper-item-pending');
+        li.innerHTML = `
+          <div class="stepper-icon stepper-icon-pending">
+            <span>${index + 1}</span>
+          </div>
+          <span class="stepper-label">${step.label}</span>
+        `;
+      }
+
+      // Add divider after (except last)
+      if (index < config.steps.length - 1) {
+        const divider = document.createElement('div');
+        divider.className = 'stepper-divider';
+        li.appendChild(divider);
+      }
+
+      list.appendChild(li);
+    });
+
+    // Update step info
+    if (info) {
+      info.textContent = `Step ${stepIndex + 1} of ${config.steps.length}`;
+    }
+  }
+
+  // Initialize when DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initStepper);
+  } else {
+    initStepper();
+  }
+})();
+</script>
+

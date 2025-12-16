@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Pod Builder - Step 3: Simulation | BiclaNet</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body data-flow="pod" data-step="3">
+  <div class="app-layout">
+    <div id="sidebar"></div>
+    <div class="content-area">
+      <div id="topbar"></div>
+      <div id="stepper"></div>
+
+      <main class="builder-main">
+        <header class="builder-header">
+          <h1 class="builder-title">Step 3: Simulation</h1>
+          <p class="builder-subtitle">Test your pod configuration with interactive simulation controls and view real-time sensor activity.</p>
+        </header>
+
+        <div class="simulation-layout">
+          <div class="simulation-controls">
+            <section class="builder-section">
+              <h2 class="builder-section-title">Simulation Controls</h2>
+              <p class="builder-section-description">Trigger pod actions to test your configuration.</p>
+              
+              <div class="sim-controls-grid">
+                <button class="sim-btn" onclick="simulateAction('qr_scan')">
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                    <rect x="2" y="2" width="6" height="6" stroke="currentColor" stroke-width="1.5"/>
+                    <rect x="8" y="2" width="6" height="6" stroke="currentColor" stroke-width="1.5"/>
+                    <rect x="2" y="8" width="6" height="6" stroke="currentColor" stroke-width="1.5"/>
+                    <rect x="8" y="8" width="6" height="6" stroke="currentColor" stroke-width="1.5"/>
+                  </svg>
+                  Simulate QR Scan
+                </button>
+                <button class="sim-btn" onclick="simulateAction('rfid_tap')">
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                    <rect x="3" y="4" width="10" height="8" rx="1" stroke="currentColor" stroke-width="1.5"/>
+                    <path d="M6 4V2C6 1.44772 6.44772 1 7 1H9C9.55228 1 10 1.44772 10 2V4" stroke="currentColor" stroke-width="1.5"/>
+                  </svg>
+                  Simulate RFID Tap
+                </button>
+                <button class="sim-btn" onclick="simulateAction('engage_lock')">
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                    <rect x="3" y="7" width="10" height="7" rx="1" stroke="currentColor" stroke-width="1.5"/>
+                    <path d="M5 7V5C5 3.34315 6.34315 2 8 2C9.65685 2 11 3.34315 11 5V7" stroke="currentColor" stroke-width="1.5"/>
+                  </svg>
+                  Engage Lock
+                </button>
+                <button class="sim-btn" onclick="simulateAction('release_lock')">
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                    <rect x="3" y="7" width="10" height="7" rx="1" stroke="currentColor" stroke-width="1.5"/>
+                    <path d="M5 7V5C5 3.34315 6.34315 2 8 2C9.65685 2 11 3.34315 11 5V7" stroke="currentColor" stroke-width="1.5"/>
+                    <path d="M8 10V12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                  </svg>
+                  Release Lock
+                </button>
+                <button class="sim-btn" onclick="simulateAction('emergency_open')">
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                    <circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="1.5"/>
+                    <path d="M8 5V8L10 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                  </svg>
+                  Emergency Open
+                </button>
+                <button class="sim-btn" onclick="simulateAction('power_failure')">
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                    <path d="M8 2V6M8 10V14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                    <circle cx="8" cy="8" r="3" stroke="currentColor" stroke-width="1.5"/>
+                  </svg>
+                  Power Failure
+                </button>
+              </div>
+            </section>
+
+            <section class="builder-section">
+              <h2 class="builder-section-title">Sensor Activity Log</h2>
+              <p class="builder-section-description">Real-time log of sensor events and system actions.</p>
+              
+              <div class="activity-log" id="activityLog">
+                <div class="log-entry">
+                  <span class="log-time">00:00:00</span>
+                  <span class="log-message">System initialized</span>
+                </div>
+              </div>
+            </section>
+          </div>
+
+          <div class="simulation-viewer">
+            <section class="builder-section">
+              <h2 class="builder-section-title">Simulation Viewer</h2>
+              <p class="builder-section-description">3D visualization of your pod configuration.</p>
+              
+              <div id="unity-sim-container" class="unity-container">
+                <div class="unity-placeholder">
+                  <p>Unity WebGL build will be embedded here (coming soon)</p>
+                  <p class="unity-placeholder-sub">The simulation viewer will show a real-time 3D representation of your pod configuration.</p>
+                </div>
+              </div>
+            </section>
+          </div>
+        </div>
+
+        <nav class="builder-nav">
+          <button class="btn-secondary" onclick="window.location.href='pod_builder_2_hardware.html'">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+              <path d="M7.5 3L4.5 6L7.5 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            Back: Hardware
+          </button>
+          <button class="btn-primary" onclick="saveAndNext()">
+            Next: Review
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+              <path d="M4.5 9L7.5 6L4.5 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </nav>
+      </main>
+    </div>
+  </div>
+
+  <script src="app_shell.js"></script>
+  <script src="builder_state.js"></script>
+  <script>
+
+    // Check for Unity build
+    fetch('unity/index.html')
+      .then(() => {
+        const container = document.getElementById('unity-sim-container');
+        container.innerHTML = '<iframe src="unity/index.html" style="width: 100%; height: 100%; border: none; border-radius: 8px;"></iframe>';
+      })
+      .catch(() => {
+        // Unity not found, keep placeholder
+      });
+
+    const actionMessages = {
+      qr_scan: 'QR code scanned successfully',
+      rfid_tap: 'RFID card detected',
+      engage_lock: 'Lock engaged',
+      release_lock: 'Lock released',
+      emergency_open: 'Emergency override activated',
+      power_failure: 'Power failure detected - backup systems active'
+    };
+
+    function simulateAction(action) {
+      const log = document.getElementById('activityLog');
+      const time = new Date().toLocaleTimeString();
+      const message = actionMessages[action] || `Action: ${action}`;
+      
+      const entry = document.createElement('div');
+      entry.className = 'log-entry';
+      entry.innerHTML = `
+        <span class="log-time">${time}</span>
+        <span class="log-message">${message}</span>
+      `;
+      
+      log.insertBefore(entry, log.firstChild);
+      
+      // Keep only last 20 entries
+      while (log.children.length > 20) {
+        log.removeChild(log.lastChild);
+      }
+    }
+
+    function saveAndNext() {
+      window.location.href = 'pod_builder_4_review.html';
+    }
+  </script>
+  <style>
+    .simulation-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-bottom: 32px;
+    }
+
+    .sim-controls-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-top: 24px;
+    }
+
+    .sim-btn {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 16px;
+      background: white;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 14px;
+      color: #1a1a1a;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .sim-btn:hover {
+      border-color: #1a1a1a;
+      background: #f9fafb;
+    }
+
+    .activity-log {
+      background: #1a1a1a;
+      border-radius: 8px;
+      padding: 16px;
+      max-height: 400px;
+      overflow-y: auto;
+      margin-top: 24px;
+      font-family: 'Monaco', 'Courier New', monospace;
+      font-size: 12px;
+    }
+
+    .log-entry {
+      display: flex;
+      gap: 16px;
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      color: #e5e7eb;
+    }
+
+    .log-entry:last-child {
+      border-bottom: none;
+    }
+
+    .log-time {
+      color: #9ca3af;
+      min-width: 80px;
+    }
+
+    .log-message {
+      color: #e5e7eb;
+    }
+
+    .unity-container {
+      width: 100%;
+      height: 600px;
+      background: #f3f4f6;
+      border-radius: 8px;
+      margin-top: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .unity-placeholder {
+      text-align: center;
+      padding: 48px;
+      color: #6b7280;
+    }
+
+    .unity-placeholder p {
+      margin: 0 0 8px 0;
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 16px;
+      font-weight: 500;
+    }
+
+    .unity-placeholder-sub {
+      font-size: 14px;
+      color: #9ca3af;
+    }
+
+    @media (max-width: 1200px) {
+      .simulation-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</body>
+</html>
+

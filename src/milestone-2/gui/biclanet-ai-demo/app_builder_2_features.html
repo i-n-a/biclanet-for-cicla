@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>App Builder - Step 2: Layout & Features | BiclaNet</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body data-flow="app" data-step="2">
+  <div class="app-layout">
+    <div id="sidebar"></div>
+    <div class="content-area">
+      <div id="topbar"></div>
+      <div id="stepper"></div>
+
+      <main class="builder-main">
+        <header class="builder-header">
+          <h1 class="builder-title">Step 2: Layout & Features</h1>
+          <p class="builder-subtitle">Manage features driven by your pod's hardware configuration.</p>
+        </header>
+
+        <div class="features-layout">
+          <div class="features-main">
+            <section class="builder-section">
+              <h2 class="builder-section-title">Required Features</h2>
+              <p class="builder-section-description">These features are required by your pod hardware and cannot be removed.</p>
+              
+              <div class="required-features" id="requiredFeatures">
+                <!-- Required features list -->
+              </div>
+            </section>
+
+            <section class="builder-section">
+              <h2 class="builder-section-title">Optional Features</h2>
+              <p class="builder-section-description">Enable additional features to enhance the rider experience.</p>
+              
+              <div class="optional-features" id="optionalFeatures">
+                <!-- Optional features list -->
+              </div>
+            </section>
+          </div>
+
+          <div class="features-preview">
+            <section class="builder-section">
+              <h2 class="builder-section-title">Live App Preview</h2>
+              <p class="builder-section-description">Preview your app with selected features.</p>
+              
+              <div class="phone-preview" id="phonePreview">
+                <div class="phone-screen">
+                  <div class="preview-header">
+                    <div class="preview-logo">Logo</div>
+                    <div class="preview-title">BiclaNet</div>
+                  </div>
+                  <div class="preview-content">
+                    <div class="preview-card">
+                      <h3 class="preview-card-title">Pod Map</h3>
+                      <p class="preview-card-text">View available pods</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </div>
+        </div>
+
+        <nav class="builder-nav">
+          <button class="btn-secondary" onclick="window.location.href='app_builder_1_branding.html'">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+              <path d="M7.5 3L4.5 6L7.5 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            Back: Brand Identity
+          </button>
+          <button class="btn-primary" onclick="saveAndNext()">
+            Next: Preview & Validation
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+              <path d="M4.5 9L7.5 6L4.5 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </nav>
+      </main>
+    </div>
+  </div>
+
+  <script src="app_shell.js"></script>
+  <script src="builder_state.js"></script>
+  <script>
+
+    const optionalFeaturesList = [
+      { id: 'surveillanceBadge', name: 'Surveillance Badge', description: 'Show security camera indicator' },
+      { id: 'environmentCard', name: 'Environment Card', description: 'Display temperature and humidity data' },
+      { id: 'aiForecastLabels', name: 'AI Forecast Labels', description: 'Show AI-powered availability predictions' },
+      { id: 'pushNotifications', name: 'Push Notifications', description: 'Send alerts and updates to users' },
+      { id: 'rideHistory', name: 'Ride History', description: 'Track and display past rides' },
+      { id: 'walletPayments', name: 'Wallet Payments', description: 'In-app payment system' },
+      { id: 'subscriptions', name: 'Subscriptions', description: 'Monthly/annual subscription plans' }
+    ];
+
+    function renderRequiredFeatures() {
+      const required = BuilderState.getRequiredAppFeatures();
+      const container = document.getElementById('requiredFeatures');
+      
+      if (required.length === 0) {
+        container.innerHTML = '<p style="color: #6b7280; font-style: italic;">No required features based on current pod configuration.</p>';
+        return;
+      }
+      
+      container.innerHTML = required.map(feature => `
+        <div class="feature-item feature-item-required">
+          <div class="feature-icon">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+              <path d="M16.7071 5.29289C17.0976 5.68342 17.0976 6.31658 16.7071 6.70711L8.70711 14.7071C8.31658 15.0976 7.68342 15.0976 7.29289 14.7071L3.29289 10.7071C2.90237 10.3166 2.90237 9.68342 3.29289 9.29289C3.68342 8.90237 4.31658 8.90237 4.70711 9.29289L8 12.5858L15.2929 5.29289C15.6834 4.90237 16.3166 4.90237 16.7071 5.29289Z" fill="currentColor"/>
+            </svg>
+          </div>
+          <div class="feature-content">
+            <strong>${feature}</strong>
+            <span>Required by pod hardware</span>
+          </div>
+          <div class="feature-lock">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+              <rect x="4" y="9" width="12" height="8" rx="1" stroke="currentColor" stroke-width="1.5"/>
+              <path d="M6 9V6C6 4.34315 7.34315 3 9 3C10.6569 3 12 4.34315 12 6V9" stroke="currentColor" stroke-width="1.5"/>
+            </svg>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function renderOptionalFeatures() {
+      const config = BuilderState.getConfig();
+      const container = document.getElementById('optionalFeatures');
+      
+      container.innerHTML = optionalFeaturesList.map(feature => {
+        const isEnabled = config.app.features[feature.id];
+        return `
+          <div class="feature-item">
+            <div class="feature-icon">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="1.5"/>
+                <path d="M10 6V10L13 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <div class="feature-content">
+              <strong>${feature.name}</strong>
+              <span>${feature.description}</span>
+            </div>
+            <label class="feature-toggle">
+              <input type="checkbox" ${isEnabled ? 'checked' : ''} data-feature="${feature.id}" />
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+        `;
+      }).join('');
+      
+      // Add event listeners
+      container.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+        checkbox.addEventListener('change', (e) => {
+          const featureId = e.target.dataset.feature;
+          const updates = {};
+          updates[featureId] = e.target.checked;
+          BuilderState.updateAppConfig({
+            features: Object.assign({}, config.app.features, updates)
+          });
+        });
+      });
+    }
+
+    function initPage() {
+      renderRequiredFeatures();
+      renderOptionalFeatures();
+    }
+
+    function saveAndNext() {
+      window.location.href = 'app_builder_3_preview.html';
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initPage);
+    } else {
+      initPage();
+    }
+  </script>
+  <style>
+    .features-layout {
+      display: grid;
+      grid-template-columns: 1fr 400px;
+      gap: 24px;
+      margin-bottom: 32px;
+    }
+
+    .required-features,
+    .optional-features {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 24px;
+    }
+
+    .feature-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 16px;
+      background: white;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      transition: all 0.2s;
+    }
+
+    .feature-item-required {
+      background: #f9fafb;
+      border-color: #1a1a1a;
+    }
+
+    .feature-icon {
+      width: 40px;
+      height: 40px;
+      background: #f3f4f6;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #1a1a1a;
+      flex-shrink: 0;
+    }
+
+    .feature-item-required .feature-icon {
+      background: #1a1a1a;
+      color: white;
+    }
+
+    .feature-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .feature-content strong {
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      color: #1a1a1a;
+    }
+
+    .feature-content span {
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 12px;
+      color: #6b7280;
+    }
+
+    .feature-lock {
+      color: #9ca3af;
+      flex-shrink: 0;
+    }
+
+    .feature-toggle {
+      position: relative;
+      display: inline-block;
+      width: 44px;
+      height: 24px;
+      flex-shrink: 0;
+    }
+
+    .feature-toggle input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .toggle-slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #e5e7eb;
+      transition: .4s;
+      border-radius: 24px;
+    }
+
+    .toggle-slider:before {
+      position: absolute;
+      content: "";
+      height: 16px;
+      width: 16px;
+      left: 4px;
+      bottom: 4px;
+      background-color: white;
+      transition: .4s;
+      border-radius: 50%;
+    }
+
+    .feature-toggle input:checked + .toggle-slider {
+      background-color: #1a1a1a;
+    }
+
+    .feature-toggle input:checked + .toggle-slider:before {
+      transform: translateX(20px);
+    }
+
+    .phone-preview {
+      margin-top: 24px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .phone-screen {
+      width: 300px;
+      height: 600px;
+      background: #FAFAFA;
+      border-radius: 24px;
+      padding: 24px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+      border: 8px solid #1a1a1a;
+    }
+
+    .preview-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 32px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    }
+
+    .preview-logo {
+      width: 40px;
+      height: 40px;
+      background: #1A1A1A;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .preview-title {
+      font-size: 20px;
+      font-weight: 600;
+      color: #1A1A1A;
+    }
+
+    .preview-content {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .preview-card {
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .preview-card-title {
+      font-size: 18px;
+      font-weight: 600;
+      color: #1A1A1A;
+      margin: 0 0 8px 0;
+    }
+
+    .preview-card-text {
+      font-size: 14px;
+      color: #5A5A5A;
+      margin: 0;
+    }
+
+    @media (max-width: 1200px) {
+      .features-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</body>
+</html>
+
