@@ -58,7 +58,12 @@ More details in [docs](https://github.com/i-n-a/cicla-ecopod/tree/main/media/doc
 
 
 Additional repositories:
+- [biclanet-ai-demo](https://github.com/naydino/biclanet-ai-demo)
 - [cicla-ecopod IOT MainUnit ESP32 code](https://github.com/berlogabob/cicla-ecopod-ESP32-MainUnit)
-- [cicla-ecopod IOT Entrance Subsystem ESP32 code](https://github.com/berlogabob/cicla-ecopod-ESP32-Entrance-Subsystem)
+- [pod_dashboard](https://github.com/berlogabob/pod_dashboard)
+
 Web pages for dashboards and UX UI prototypes:
--[IOT MainUnit](https://berlogabob.github.io/cicla-ecopod-ESP32-MainUnit/)
+
+- [IOT MainUnit](https://berlogabob.github.io/cicla-ecopod-ESP32-MainUnit/)
+- [pod_dashboard](https://berlogabob.github.io/pod_dashboard/)
+- [biclanet-ai-demo](naydino.github.io/biclanet-ai-demo/)
