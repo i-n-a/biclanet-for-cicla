@@ -26,8 +26,12 @@ gantt
     Point of Contact                    :2025-12-09, 1d
     Final Presentation                   :2026-01-06, 1d
 ```
+# Presrntation video
+[youtube link](https://youtu.be/kNcF7gDWNXE)
+
+
 # Useful Links  
-[Link to Working document](https://docs.google.com/document/d/1_f73_U93AwlQ-TL3sfaMJZ4F4geB0MIdHWNPetevUEc/edit?usp=sharing)
+[![](/media/milestone-2/BiclaNet_Presentation_video.png)](https://docs.google.com/document/d/1_f73_U93AwlQ-TL3sfaMJZ4F4geB0MIdHWNPetevUEc/edit?usp=sharing)
 
 # Cicla EcoPod – Smart Urban Bike Parking System
 
