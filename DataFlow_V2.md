@@ -6,7 +6,7 @@ flowchart TD
 
     subgraph Unity_Path ["Unity Path"]
         direction TB
-        UnitySDK["Firebase Unity SDK"]
+        UnitySDK["Firebase Unity SDK<br/><span style='font-size:smaller;color:#555'>(Library / Method of operation)</span>"]
         Unity3D["Unity 3D"]
         DigitalTwin["DigitalTwin"]
         UnitySDK --> Unity3D --> DigitalTwin
@@ -14,7 +14,7 @@ flowchart TD
 
     subgraph ESP32_Path ["ESP32 Path"]
         direction TB
-        ESPClient["Firebase_ESP_Client.h"]
+        ESPClient["Firebase_ESP_Client.h<br/><span style='font-size:smaller;color:#555'>(Library / Method of operation)</span>"]
         ESP32["ESP32"]
         SensorRead["Sensor read"]
         ActuatorsWrite["Actuators write"]
@@ -25,7 +25,7 @@ flowchart TD
 
     subgraph Flutter_Path ["Flutter Path"]
         direction TB
-        FirebaseCLI["Firebase CLI"]
+        FirebaseCLI["Firebase CLI / Client Library<br/><span style='font-size:smaller;color:#555'>(Library / Method of operation)</span>"]
         FlutterApp["Flutter App"]
         ControlCenter["Control Center"]
         ReadStatus["Read status"]
@@ -37,21 +37,21 @@ flowchart TD
         ControlCenter --> PlotGraph
     end
 
-    %% Bidirectional connections
-    Firebase <--> Unity_Path
-    Firebase <--> ESP32_Path
-    Firebase <--> Flutter_Path
+    %% Bidirectional data flow (read/write)
+    Firebase <-->|"Read / Write"| Unity_Path
+    Firebase <-->|"Read / Write"| ESP32_Path
+    Firebase <-->|"Read / Write"| Flutter_Path
 
-    %% Styling
+    %% Styling to highlight the "method/library" layer
     classDef central fill:#ffccbc,stroke:#d84315,stroke-width:3px,color:#000;
-    classDef client fill:#e1f5fe,stroke:#01579b,stroke-width:2px,color:#000;
-    classDef device fill:#f0e6ff,stroke:#4a148c,stroke-width:2px,color:#000;
-    classDef action fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000;
+    classDef library fill:#fff3e0,stroke:#ef6c00,stroke-width:3px,stroke-dasharray: 5 5,color:#000;
+    classDef platform fill:#f0e6ff,stroke:#4a148c,stroke-width:2px,color:#000;
+    classDef endpoint fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000;
 
     class Firebase central
-    class UnitySDK,ESPClient,FirebaseCLI client
-    class Unity3D,ESP32,FlutterApp device
-    class DigitalTwin,SensorRead,ActuatorsWrite,ReadStatus,WriteVars,PlotGraph,ControlCenter action
+    class UnitySDK,ESPClient,FirebaseCLI library
+    class Unity3D,ESP32,FlutterApp,ControlCenter platform
+    class DigitalTwin,SensorRead,ActuatorsWrite,ReadStatus,WriteVars,PlotGraph endpoint
 ```
 
 ## Structure Diagram (Class Diagram – Recommended for JSON Object Model)
