@@ -1,4 +1,58 @@
 # Data Flow 
+```mermaid
+
+flowchart TD
+    Firebase["FireBase<br/><span style='font-size:smaller'>Central Realtime Database</span>"]
+
+    subgraph Unity_Path ["Unity Path"]
+        direction TB
+        UnitySDK["Firebase Unity SDK"]
+        Unity3D["Unity 3D"]
+        DigitalTwin["DigitalTwin"]
+        UnitySDK --> Unity3D --> DigitalTwin
+    end
+
+    subgraph ESP32_Path ["ESP32 Path"]
+        direction TB
+        ESPClient["Firebase_ESP_Client.h"]
+        ESP32["ESP32"]
+        SensorRead["Sensor read"]
+        ActuatorsWrite["Actuators write"]
+        ESPClient --> ESP32
+        ESP32 --> SensorRead
+        ESP32 --> ActuatorsWrite
+    end
+
+    subgraph Flutter_Path ["Flutter Path"]
+        direction TB
+        FirebaseCLI["Firebase CLI"]
+        FlutterApp["Flutter App"]
+        ControlCenter["Control Center"]
+        ReadStatus["Read status"]
+        WriteVars["Write variables"]
+        PlotGraph["Plot graph"]
+        FirebaseCLI --> FlutterApp --> ControlCenter
+        ControlCenter --> ReadStatus
+        ControlCenter --> WriteVars
+        ControlCenter --> PlotGraph
+    end
+
+    %% Bidirectional connections
+    Firebase <--> Unity_Path
+    Firebase <--> ESP32_Path
+    Firebase <--> Flutter_Path
+
+    %% Styling
+    classDef central fill:#ffccbc,stroke:#d84315,stroke-width:3px,color:#000;
+    classDef client fill:#e1f5fe,stroke:#01579b,stroke-width:2px,color:#000;
+    classDef device fill:#f0e6ff,stroke:#4a148c,stroke-width:2px,color:#000;
+    classDef action fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000;
+
+    class Firebase central
+    class UnitySDK,ESPClient,FirebaseCLI client
+    class Unity3D,ESP32,FlutterApp device
+    class DigitalTwin,SensorRead,ActuatorsWrite,ReadStatus,WriteVars,PlotGraph,ControlCenter action
+```
 
 ## Structure Diagram (Class Diagram – Recommended for JSON Object Model)
 
