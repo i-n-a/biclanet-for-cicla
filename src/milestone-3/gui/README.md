@@ -7,7 +7,7 @@ Due to GitHub file size limitations, the full Unity project (including
 Assets, Packages, and ProjectSettings) is provided as a downloadable ZIP.
 
 ## Full Unity Project
-🔗 Download: [ LINK HERE]
+🔗 Download: [(https://drive.google.com/drive/folders/1_zIl7q734xmbDI-KOI4og99U9i9lVdTN?usp=drive_link)]
 
 ## Included in this repository
 - Key Unity C# scripts
