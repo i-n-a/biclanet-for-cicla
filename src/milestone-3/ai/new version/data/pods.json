@@ -1,0 +1,25 @@
+{
+  "pods": [
+    { "pod_id": "pod_01", "name": "IADE / Moscavide", "cluster": "A", "area_type": "Academic / Campus", "lat": 38.782008, "lon": -9.103377 },
+    { "pod_id": "pod_02", "name": "Gare do Oriente", "cluster": "A", "area_type": "Intermodal Hub", "lat": 38.766629, "lon": -9.096511 },
+    { "pod_id": "pod_03", "name": "Campo Grande", "cluster": "A", "area_type": "University / Commuter", "lat": 38.752483, "lon": -9.156194 },
+    { "pod_id": "pod_04", "name": "Sete Rios", "cluster": "A", "area_type": "Intermodal Hub", "lat": 38.740681, "lon": -9.167361 },
+    { "pod_id": "pod_05", "name": "Saldanha", "cluster": "A", "area_type": "Central Business", "lat": 38.733636, "lon": -9.145886 },
+    { "pod_id": "pod_06", "name": "Cais do Sodré", "cluster": "B", "area_type": "Transit / Leisure", "lat": 38.705324, "lon": -9.145230 },
+    { "pod_id": "pod_07", "name": "Santa Apolónia", "cluster": "B", "area_type": "Transit / Riverside", "lat": 38.711973, "lon": -9.124111 },
+    { "pod_id": "pod_08", "name": "Braço de Prata", "cluster": "B", "area_type": "Riverside / Mixed-use", "lat": 38.742771, "lon": -9.098481 },
+    { "pod_id": "pod_09", "name": "Marvila", "cluster": "B", "area_type": "Creative / Industrial", "lat": 38.754662, "lon": -9.117889 },
+    { "pod_id": "pod_10", "name": "Beato", "cluster": "B", "area_type": "Riverside / Innovation", "lat": 38.729751, "lon": -9.106835 },
+
+    { "pod_id": "pod_11", "name": "Alvalade", "cluster": "C", "area_type": "Residential", "lat": 38.756417, "lon": -9.145866 },
+    { "pod_id": "pod_12", "name": "Olivais Norte", "cluster": "C", "area_type": "Residential", "lat": 38.761649, "lon": -9.111476 },
+    { "pod_id": "pod_13", "name": "Areeiro / Alameda", "cluster": "C", "area_type": "Residential / Hills", "lat": 38.741050, "lon": -9.133237 },
+    { "pod_id": "pod_14", "name": "Olaias", "cluster": "C", "area_type": "Residential / Hills", "lat": 38.742741, "lon": -9.124565 },
+    { "pod_id": "pod_15", "name": "Pontinha", "cluster": "C", "area_type": "Peripheral / Boundary Node", "lat": 38.763397, "lon": -9.197472 }
+  ],
+  "assumptions": {
+    "pods_total": 15,
+    "spots_per_pod": 12,
+    "pilot_city": "Lisbon"
+  }
+}

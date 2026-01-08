@@ -1,0 +1,16 @@
+[
+  {
+    "provider": "open-meteo",
+    "location": "Lisbon",
+    "generated_at_unix_s": 1767635100,
+    "current": {
+      "time": 1767635100,
+      "interval": 900,
+      "apparent_temperature_c": 5,
+      "precipitation_mm": 0,
+      "wind_speed_kmh": 18.4,
+      "relative_humidity_pct": 61,
+      "is_day": 0
+    }
+  }
+]

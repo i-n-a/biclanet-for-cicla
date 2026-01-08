@@ -1,0 +1,1227 @@
+{
+  "network": {
+    "meta": {
+      "network_id": "lisbon_pilot",
+      "pod_count": 15,
+      "spots_per_pod": 12,
+      "updated_at": 1766951510000
+    },
+    "pods": {
+      "pod_01": {
+        "capacity": 12,
+        "free_count": 5,
+        "occupied_count": 4,
+        "reserved_count": 3,
+        "last_seen": 1766951510000,
+        "spots": {
+          "spot_02": {
+            "clamp_closed": true,
+            "occupied": true,
+            "reserved": false,
+            "updated_at": 1766951510000
+          },
+          "spot_10": {
+            "clamp_closed": true,
+            "occupied": true,
+            "reserved": false,
+            "updated_at": 1766951510000
+          },
+          "spot_12": {
+            "clamp_closed": true,
+            "occupied": true,
+            "reserved": false,
+            "updated_at": 1766951510000
+          },
+          "spot_01": {
+            "clamp_closed": false,
+            "occupied": true,
+            "reserved": false,
+            "updated_at": 1766951510000
+          },
+          "spot_04": {
+            "clamp_closed": false,
+            "occupied": false,
+            "reserved": true,
+            "updated_at": 1766951510000
+          },
+          "spot_11": {
+            "clamp_closed": false,
+            "occupied": false,
+            "reserved": true,
+            "updated_at": 1766951510000
+          },
+          "spot_09": {
+            "clamp_closed": false,
+            "occupied": false,
+            "reserved": true,
+            "updated_at": 1766951510000
+          },
+          "spot_08": {
+            "clamp_closed": false,
+            "occupied": false,
+            "reserved": false,
+            "updated_at": 1766951510000
+          },
+          "spot_03": {
+            "clamp_closed": false,
+            "occupied": false,
+            "reserved": false,
+            "updated_at": 1766951510000
+          },
+          "spot_05": {
+            "clamp_closed": false,
+            "occupied": false,
+            "reserved": false,
+            "updated_at": 1766951510000
+          },
+          "spot_06": {
+            "clamp_closed": false,
+            "occupied": false,
+            "reserved": false,
+            "updated_at": 1766951510000
+          },
+          "spot_07": {
+            "clamp_closed": false,
+            "occupied": false,
+            "reserved": false,
+            "updated_at": 1766951510000
+          }
+        }
+      },
+      "pod_02": {
+        "capacity": 12,
+        "free_count": 2,
+        "occupied_count": 10,
+        "reserved_count": 0,
+        "last_seen": 1766951510000,
+        "spots": {
+          "spot_07": {
+            "clamp_closed": true,
+            "occupied": true,
+            "reserved": false,
+            "updated_at": 1766951510000
+          },
+          "spot_06": {
+            "clamp_closed": true,
+            "occupied": true,
+            "reserved": false,
+            "updated_at": 1766951510000
+          },
+          "spot_05": {
+            "clamp_closed": true,
+            "occupied": true,
+            "reserved": false,
+            "updated_at": 1766951510000
+          },
+          "spot_10": {
+            "clamp_closed": true,
+            "occupied": true,
+            "reserved": false,
+            "updated_at": 1766951510000
+          },
+          "spot_08": {
+            "clamp_closed": true,
+            "occupied": true,
+            "reserved": false,
+            "updated_at": 1766951510000
+          },
+          "spot_11": {
+            "clamp_closed": true,
+            "occupied": true,
+            "reserved": false,
+            "updated_at": 1766951510000
+          },
+          "spot_04": {
+            "clamp_closed": true,
+            "occupied": true,
+            "reserved": false,
+            "updated_at": 1766951510000
+          },
+          "spot_12": {
+            "clamp_closed": true,
+            "occupied": true,
+            "reserved": false,
+            "updated_at": 1766951510000
+          },
+          "spot_01": {
+            "clamp_closed": true,
+            "occupied": true,
+            "reserved": false,
+            "updated_at": 1766951510000
+          },
+          "spot_03": {
+            "clamp_closed": true,
+            "occupied": true,
+            "reserved": false,
+            "updated_at": 1766951510000
+          },
+          "spot_02": {
+            "clamp_closed": false,
+            "occupied": false,
+            "reserved": false,
+            "updated_at": 1766951510000
+          },
+          "spot_09": {
+            "clamp_closed": false,
+            "occupied": false,
+            "reserved": false,
+            "updated_at": 1766951510000
+          }
+        }
+      },
+      "pod_03": {
+        "capacity": 12,
+        "free_count": 9,
+        "occupied_count": 1,
+        "reserved_count": 2,
+        "last_seen": 1766951510000,
+        "spots": {
+          "spot_06": {
+            "clamp_closed": true,
+            "occupied": true,
+            "reserved": false,
+            "updated_at": 1766951510000
+          },
+          "spot_12": {
+            "clamp_closed": true,
+            "occupied": false,
+            "reserved": true,
+            "updated_at": 1766951510000
+          },
+          "spot_09": {
+            "clamp_closed": false,
+            "occupied": false,
+            "reserved": true,
+            "updated_at": 1766951510000
+          },
+          "spot_07": {
+            "clamp_closed": false,
+            "occupied": false,
+            "reserved": false,
+            "updated_at": 1766951510000
+          },
+          "spot_03": {
+            "clamp_closed": false,
+            "occupied": false,
+            "reserved": false,
+            "updated_at": 1766951510000
+          },
+          "spot_08": {
+            "clamp_closed": false,
+            "occupied": false,
+            "reserved": false,
+            "updated_at": 1766951510000
+          },
+          "spot_10": {
+            "clamp_closed": false,
+            "occupied": false,
+            "reserved": false,
+            "updated_at": 1766951510000
+          },
+          "spot_02": {
+            "clamp_closed": false,
+            "occupied": false,
+            "reserved": false,
+            "updated_at": 1766951510000
+          },
+          "spot_11": {
+            "clamp_closed": false,
+            "occupied": false,
+            "reserved": false,
+            "updated_at": 1766951510000
+          },
+          "spot_01": {
+            "clamp_closed": false,
+            "occupied": false,
+            "reserved": false,
+            "updated_at": 1766951510000
+          },
+          "spot_04": {
+            "clamp_closed": false,
+            "occupied": false,
+            "reserved": false,
+            "updated_at": 1766951510000
+          },
+          "spot_05": {
+            "clamp_closed": false,
+            "occupied": false,
+            "reserved": false,
+            "updated_at": 1766951510000
+          }
+        }
+      },
+      "pod_04": {
+        "capacity": 12,
+        "free_count": 4,
+        "occupied_count": 7,
+        "reserved_count": 1,
+        "last_seen": 1766951510000,
+        "spots": {
+          "spot_07": {
+            "clamp_closed": true,
+            "occupied": true,
+            "reserved": false,
+            "updated_at": 1766951510000
+          },
+          "spot_09": {
+            "clamp_closed": true,
+            "occupied": true,
+            "reserved": false,
+            "updated_at": 1766951510000
+          },
+          "spot_11": {
+            "clamp_closed": true,
+            "occupied": true,
+            "reserved": false,
+            "updated_at": 1766951510000
+          },
+          "spot_04": {
+            "clamp_closed": true,
+            "occupied": true,
+            "reserved": false,
+            "updated_at": 1766951510000
+          },
+          "spot_10": {
+            "clamp_closed": true,
+            "occupied": true,
+            "reserved": false,
+            "updated_at": 1766951510000
+          },
+          "spot_03": {
+            "clamp_closed": false,
+            "occupied": true,
+            "reserved": false,
+            "updated_at": 1766951510000
+          },
+          "spot_12": {
+            "clamp_closed": true,
+            "occupied": true,
+            "reserved": false,
+            "updated_at": 1766951510000
+          },
+          "spot_08": {
+            "clamp_closed": true,
+            "occupied": false,
+            "reserved": true,
+            "updated_at": 1766951510000
+          },
+          "spot_05": {
+            "clamp_closed": false,
+            "occupied": false,
+            "reserved": false,
+            "updated_at": 1766951510000
+          },
+          "spot_02": {
+            "clamp_closed": false,
+            "occupied": false,
+            "reserved": false,
+            "updated_at": 1766951510000
+          },
+          "spot_01": {
+            "clamp_closed": false,
+            "occupied": false,
+            "reserved": false,
+            "updated_at": 1766951510000
+          },
+          "spot_06": {
+            "clamp_closed": false,
+            "occupied": false,
+            "reserved": false,
+            "updated_at": 1766951510000
+          }
+        }
+      },
+      "pod_05": {
+        "capacity": 12,
+        "free_count": 8,
+        "occupied_count": 4,
+        "reserved_count": 0,
+        "last_seen": 1766951510000,
+        "spots": {
+          "spot_08": {
+            "clamp_closed": true,
+            "occupied": true,
+            "reserved": false,
+            "updated_at": 1766951510000
+          },
+          "spot_05": {
+            "clamp_closed": true,
+            "occupied": true,
+            "reserved": false,
+            "updated_at": 1766951510000
+          },
+          "spot_02": {
+            "clamp_closed": false,
+            "occupied": true,
+            "reserved": false,
+            "updated_at": 1766951510000
+          },
+          "spot_10": {
+            "clamp_closed": true,
+            "occupied": true,
+            "reserved": false,
+            "updated_at": 1766951510000
+          },
+          "spot_11": {
+            "clamp_closed": false,
+            "occupied": false,
+            "reserved": false,
+            "updated_at": 1766951510000
+          },
+          "spot_01": {
+            "clamp_closed": false,
+            "occupied": false,
+            "reserved": false,
+            "updated_at": 1766951510000
+          },
+          "spot_03": {
+            "clamp_closed": false,
+            "occupied": false,
+            "reserved": false,
+            "updated_at": 1766951510000
+          },
+          "spot_09": {
+            "clamp_closed": false,
+            "occupied": false,
+            "reserved": false,
+            "updated_at": 1766951510000
+          },
+          "spot_04": {
+            "clamp_closed": false,
+            "occupied": false,
+            "reserved": false,
+            "updated_at": 1766951510000
+          },
+          "spot_06": {
+            "clamp_closed": false,
+            "occupied": false,
+            "reserved": false,
+            "updated_at": 1766951510000
+          },
+          "spot_07": {
+            "clamp_closed": false,
+            "occupied": false,
+            "reserved": false,
+            "updated_at": 1766951510000
+          },
+          "spot_12": {
+            "clamp_closed": false,
+            "occupied": false,
+            "reserved": false,
+            "updated_at": 1766951510000
+          }
+        }
+      },
+      "pod_06": {
+        "capacity": 12,
+        "free_count": 4,
+        "occupied_count": 5,
+        "reserved_count": 3,
+        "last_seen": 1766951510000,
+        "spots": {
+          "spot_02": {
+            "clamp_closed": true,
+            "occupied": true,
+            "reserved": false,
+            "updated_at": 1766951510000
+          },
+          "spot_01": {
+            "clamp_closed": true,
+            "occupied": true,
+            "reserved": false,
+            "updated_at": 1766951510000
+          },
+          "spot_05": {
+            "clamp_closed": true,
+            "occupied": true,
+            "reserved": false,
+            "updated_at": 1766951510000
+          },
+          "spot_04": {
+            "clamp_closed": true,
+            "occupied": true,
+            "reserved": false,
+            "updated_at": 1766951510000
+          },
+          "spot_10": {
+            "clamp_closed": true,
+            "occupied": true,
+            "reserved": false,
+            "updated_at": 1766951510000
+          },
+          "spot_07": {
+            "clamp_closed": false,
+            "occupied": false,
+            "reserved": true,
+            "updated_at": 1766951510000
+          },
+          "spot_08": {
+            "clamp_closed": false,
+            "occupied": false,
+            "reserved": true,
+            "updated_at": 1766951510000
+          },
+          "spot_03": {
+            "clamp_closed": false,
+            "occupied": false,
+            "reserved": true,
+            "updated_at": 1766951510000
+          },
+          "spot_11": {
+            "clamp_closed": false,
+            "occupied": false,
+            "reserved": false,
+            "updated_at": 1766951510000
+          },
+          "spot_09": {
+            "clamp_closed": false,
+            "occupied": false,
+            "reserved": false,
+            "updated_at": 1766951510000
+          },
+          "spot_06": {
+            "clamp_closed": false,
+            "occupied": false,
+            "reserved": false,
+            "updated_at": 1766951510000
+          },
+          "spot_12": {
+            "clamp_closed": false,
+            "occupied": false,
+            "reserved": false,
+            "updated_at": 1766951510000
+          }
+        }
+      },
+      "pod_07": {
+        "capacity": 12,
+        "free_count": 0,
+        "occupied_count": 9,
+        "reserved_count": 3,
+        "last_seen": 1766951510000,
+        "spots": {
+          "spot_04": {
+            "clamp_closed": true,
+            "occupied": true,
+            "reserved": false,
+            "updated_at": 1766951510000
+          },
+          "spot_08": {
+            "clamp_closed": true,
+            "occupied": true,
+            "reserved": false,
+            "updated_at": 1766951510000
+          },
+          "spot_11": {
+            "clamp_closed": true,
+            "occupied": true,
+            "reserved": false,
+            "updated_at": 1766951510000
+          },
+          "spot_07": {
+            "clamp_closed": true,
+            "occupied": true,
+            "reserved": false,
+            "updated_at": 1766951510000
+          },
+          "spot_06": {
+            "clamp_closed": true,
+            "occupied": true,
+            "reserved": false,
+            "updated_at": 1766951510000
+          },
+          "spot_01": {
+            "clamp_closed": true,
+            "occupied": true,
+            "reserved": false,
+            "updated_at": 1766951510000
+          },
+          "spot_03": {
+            "clamp_closed": true,
+            "occupied": true,
+            "reserved": false,
+            "updated_at": 1766951510000
+          },
+          "spot_10": {
+            "clamp_closed": true,
+            "occupied": true,
+            "reserved": false,
+            "updated_at": 1766951510000
+          },
+          "spot_12": {
+            "clamp_closed": true,
+            "occupied": true,
+            "reserved": false,
+            "updated_at": 1766951510000
+          },
+          "spot_09": {
+            "clamp_closed": false,
+            "occupied": false,
+            "reserved": true,
+            "updated_at": 1766951510000
+          },
+          "spot_05": {
+            "clamp_closed": true,
+            "occupied": false,
+            "reserved": true,
+            "updated_at": 1766951510000
+          },
+          "spot_02": {
+            "clamp_closed": false,
+            "occupied": false,
+            "reserved": true,
+            "updated_at": 1766951510000
+          }
+        }
+      },
+      "pod_08": {
+        "capacity": 12,
+        "free_count": 4,
+        "occupied_count": 6,
+        "reserved_count": 2,
+        "last_seen": 1766951510000,
+        "spots": {
+          "spot_03": {
+            "clamp_closed": true,
+            "occupied": true,
+            "reserved": false,
+            "updated_at": 1766951510000
+          },
+          "spot_08": {
+            "clamp_closed": true,
+            "occupied": true,
+            "reserved": false,
+            "updated_at": 1766951510000
+          },
+          "spot_10": {
+            "clamp_closed": true,
+            "occupied": true,
+            "reserved": false,
+            "updated_at": 1766951510000
+          },
+          "spot_09": {
+            "clamp_closed": true,
+            "occupied": true,
+            "reserved": false,
+            "updated_at": 1766951510000
+          },
+          "spot_05": {
+            "clamp_closed": true,
+            "occupied": true,
+            "reserved": false,
+            "updated_at": 1766951510000
+          },
+          "spot_01": {
+            "clamp_closed": true,
+            "occupied": true,
+            "reserved": false,
+            "updated_at": 1766951510000
+          },
+          "spot_06": {
+            "clamp_closed": false,
+            "occupied": false,
+            "reserved": true,
+            "updated_at": 1766951510000
+          },
+          "spot_12": {
+            "clamp_closed": false,
+            "occupied": false,
+            "reserved": true,
+            "updated_at": 1766951510000
+          },
+          "spot_11": {
+            "clamp_closed": false,
+            "occupied": false,
+            "reserved": false,
+            "updated_at": 1766951510000
+          },
+          "spot_04": {
+            "clamp_closed": false,
+            "occupied": false,
+            "reserved": false,
+            "updated_at": 1766951510000
+          },
+          "spot_02": {
+            "clamp_closed": false,
+            "occupied": false,
+            "reserved": false,
+            "updated_at": 1766951510000
+          },
+          "spot_07": {
+            "clamp_closed": false,
+            "occupied": false,
+            "reserved": false,
+            "updated_at": 1766951510000
+          }
+        }
+      },
+      "pod_09": {
+        "capacity": 12,
+        "free_count": 2,
+        "occupied_count": 8,
+        "reserved_count": 2,
+        "last_seen": 1766951510000,
+        "spots": {
+          "spot_10": {
+            "clamp_closed": true,
+            "occupied": true,
+            "reserved": false,
+            "updated_at": 1766951510000
+          },
+          "spot_02": {
+            "clamp_closed": true,
+            "occupied": true,
+            "reserved": false,
+            "updated_at": 1766951510000
+          },
+          "spot_12": {
+            "clamp_closed": true,
+            "occupied": true,
+            "reserved": false,
+            "updated_at": 1766951510000
+          },
+          "spot_06": {
+            "clamp_closed": true,
+            "occupied": true,
+            "reserved": false,
+            "updated_at": 1766951510000
+          },
+          "spot_05": {
+            "clamp_closed": false,
+            "occupied": true,
+            "reserved": false,
+            "updated_at": 1766951510000
+          },
+          "spot_11": {
+            "clamp_closed": true,
+            "occupied": true,
+            "reserved": false,
+            "updated_at": 1766951510000
+          },
+          "spot_08": {
+            "clamp_closed": true,
+            "occupied": true,
+            "reserved": false,
+            "updated_at": 1766951510000
+          },
+          "spot_01": {
+            "clamp_closed": true,
+            "occupied": true,
+            "reserved": false,
+            "updated_at": 1766951510000
+          },
+          "spot_09": {
+            "clamp_closed": false,
+            "occupied": false,
+            "reserved": true,
+            "updated_at": 1766951510000
+          },
+          "spot_07": {
+            "clamp_closed": true,
+            "occupied": false,
+            "reserved": true,
+            "updated_at": 1766951510000
+          },
+          "spot_04": {
+            "clamp_closed": false,
+            "occupied": false,
+            "reserved": false,
+            "updated_at": 1766951510000
+          },
+          "spot_03": {
+            "clamp_closed": false,
+            "occupied": false,
+            "reserved": false,
+            "updated_at": 1766951510000
+          }
+        }
+      },
+      "pod_10": {
+        "capacity": 12,
+        "free_count": 0,
+        "occupied_count": 9,
+        "reserved_count": 3,
+        "last_seen": 1766951510000,
+        "spots": {
+          "spot_08": {
+            "clamp_closed": true,
+            "occupied": true,
+            "reserved": false,
+            "updated_at": 1766951510000
+          },
+          "spot_10": {
+            "clamp_closed": true,
+            "occupied": true,
+            "reserved": false,
+            "updated_at": 1766951510000
+          },
+          "spot_03": {
+            "clamp_closed": true,
+            "occupied": true,
+            "reserved": false,
+            "updated_at": 1766951510000
+          },
+          "spot_12": {
+            "clamp_closed": true,
+            "occupied": true,
+            "reserved": false,
+            "updated_at": 1766951510000
+          },
+          "spot_09": {
+            "clamp_closed": true,
+            "occupied": true,
+            "reserved": false,
+            "updated_at": 1766951510000
+          },
+          "spot_06": {
+            "clamp_closed": true,
+            "occupied": true,
+            "reserved": false,
+            "updated_at": 1766951510000
+          },
+          "spot_11": {
+            "clamp_closed": true,
+            "occupied": true,
+            "reserved": false,
+            "updated_at": 1766951510000
+          },
+          "spot_05": {
+            "clamp_closed": true,
+            "occupied": true,
+            "reserved": false,
+            "updated_at": 1766951510000
+          },
+          "spot_07": {
+            "clamp_closed": true,
+            "occupied": true,
+            "reserved": false,
+            "updated_at": 1766951510000
+          },
+          "spot_04": {
+            "clamp_closed": false,
+            "occupied": false,
+            "reserved": true,
+            "updated_at": 1766951510000
+          },
+          "spot_02": {
+            "clamp_closed": false,
+            "occupied": false,
+            "reserved": true,
+            "updated_at": 1766951510000
+          },
+          "spot_01": {
+            "clamp_closed": false,
+            "occupied": false,
+            "reserved": true,
+            "updated_at": 1766951510000
+          }
+        }
+      },
+      "pod_11": {
+        "capacity": 12,
+        "free_count": 2,
+        "occupied_count": 8,
+        "reserved_count": 2,
+        "last_seen": 1766951510000,
+        "spots": {
+          "spot_08": {
+            "clamp_closed": true,
+            "occupied": true,
+            "reserved": false,
+            "updated_at": 1766951510000
+          },
+          "spot_09": {
+            "clamp_closed": true,
+            "occupied": true,
+            "reserved": false,
+            "updated_at": 1766951510000
+          },
+          "spot_02": {
+            "clamp_closed": true,
+            "occupied": true,
+            "reserved": false,
+            "updated_at": 1766951510000
+          },
+          "spot_07": {
+            "clamp_closed": true,
+            "occupied": true,
+            "reserved": false,
+            "updated_at": 1766951510000
+          },
+          "spot_03": {
+            "clamp_closed": true,
+            "occupied": true,
+            "reserved": false,
+            "updated_at": 1766951510000
+          },
+          "spot_10": {
+            "clamp_closed": true,
+            "occupied": true,
+            "reserved": false,
+            "updated_at": 1766951510000
+          },
+          "spot_04": {
+            "clamp_closed": true,
+            "occupied": true,
+            "reserved": false,
+            "updated_at": 1766951510000
+          },
+          "spot_05": {
+            "clamp_closed": true,
+            "occupied": true,
+            "reserved": false,
+            "updated_at": 1766951510000
+          },
+          "spot_11": {
+            "clamp_closed": true,
+            "occupied": false,
+            "reserved": true,
+            "updated_at": 1766951510000
+          },
+          "spot_06": {
+            "clamp_closed": false,
+            "occupied": false,
+            "reserved": true,
+            "updated_at": 1766951510000
+          },
+          "spot_01": {
+            "clamp_closed": false,
+            "occupied": false,
+            "reserved": false,
+            "updated_at": 1766951510000
+          },
+          "spot_12": {
+            "clamp_closed": false,
+            "occupied": false,
+            "reserved": false,
+            "updated_at": 1766951510000
+          }
+        }
+      },
+      "pod_12": {
+        "capacity": 12,
+        "free_count": 4,
+        "occupied_count": 7,
+        "reserved_count": 1,
+        "last_seen": 1766951510000,
+        "spots": {
+          "spot_11": {
+            "clamp_closed": true,
+            "occupied": true,
+            "reserved": false,
+            "updated_at": 1766951510000
+          },
+          "spot_03": {
+            "clamp_closed": true,
+            "occupied": true,
+            "reserved": false,
+            "updated_at": 1766951510000
+          },
+          "spot_08": {
+            "clamp_closed": true,
+            "occupied": true,
+            "reserved": false,
+            "updated_at": 1766951510000
+          },
+          "spot_02": {
+            "clamp_closed": true,
+            "occupied": true,
+            "reserved": false,
+            "updated_at": 1766951510000
+          },
+          "spot_06": {
+            "clamp_closed": true,
+            "occupied": true,
+            "reserved": false,
+            "updated_at": 1766951510000
+          },
+          "spot_12": {
+            "clamp_closed": true,
+            "occupied": true,
+            "reserved": false,
+            "updated_at": 1766951510000
+          },
+          "spot_05": {
+            "clamp_closed": true,
+            "occupied": true,
+            "reserved": false,
+            "updated_at": 1766951510000
+          },
+          "spot_01": {
+            "clamp_closed": true,
+            "occupied": false,
+            "reserved": true,
+            "updated_at": 1766951510000
+          },
+          "spot_09": {
+            "clamp_closed": false,
+            "occupied": false,
+            "reserved": false,
+            "updated_at": 1766951510000
+          },
+          "spot_07": {
+            "clamp_closed": false,
+            "occupied": false,
+            "reserved": false,
+            "updated_at": 1766951510000
+          },
+          "spot_10": {
+            "clamp_closed": false,
+            "occupied": false,
+            "reserved": false,
+            "updated_at": 1766951510000
+          },
+          "spot_04": {
+            "clamp_closed": false,
+            "occupied": false,
+            "reserved": false,
+            "updated_at": 1766951510000
+          }
+        }
+      },
+      "pod_13": {
+        "capacity": 12,
+        "free_count": 7,
+        "occupied_count": 4,
+        "reserved_count": 1,
+        "last_seen": 1766951510000,
+        "spots": {
+          "spot_01": {
+            "clamp_closed": true,
+            "occupied": true,
+            "reserved": false,
+            "updated_at": 1766951510000
+          },
+          "spot_02": {
+            "clamp_closed": true,
+            "occupied": true,
+            "reserved": false,
+            "updated_at": 1766951510000
+          },
+          "spot_08": {
+            "clamp_closed": true,
+            "occupied": true,
+            "reserved": false,
+            "updated_at": 1766951510000
+          },
+          "spot_03": {
+            "clamp_closed": true,
+            "occupied": true,
+            "reserved": false,
+            "updated_at": 1766951510000
+          },
+          "spot_06": {
+            "clamp_closed": false,
+            "occupied": false,
+            "reserved": true,
+            "updated_at": 1766951510000
+          },
+          "spot_11": {
+            "clamp_closed": false,
+            "occupied": false,
+            "reserved": false,
+            "updated_at": 1766951510000
+          },
+          "spot_07": {
+            "clamp_closed": false,
+            "occupied": false,
+            "reserved": false,
+            "updated_at": 1766951510000
+          },
+          "spot_04": {
+            "clamp_closed": true,
+            "occupied": false,
+            "reserved": false,
+            "updated_at": 1766951510000
+          },
+          "spot_12": {
+            "clamp_closed": false,
+            "occupied": false,
+            "reserved": false,
+            "updated_at": 1766951510000
+          },
+          "spot_05": {
+            "clamp_closed": true,
+            "occupied": false,
+            "reserved": false,
+            "updated_at": 1766951510000
+          },
+          "spot_10": {
+            "clamp_closed": false,
+            "occupied": false,
+            "reserved": false,
+            "updated_at": 1766951510000
+          },
+          "spot_09": {
+            "clamp_closed": false,
+            "occupied": false,
+            "reserved": false,
+            "updated_at": 1766951510000
+          }
+        }
+      },
+      "pod_14": {
+        "capacity": 12,
+        "free_count": 10,
+        "occupied_count": 1,
+        "reserved_count": 1,
+        "last_seen": 1766951510000,
+        "spots": {
+          "spot_06": {
+            "clamp_closed": true,
+            "occupied": true,
+            "reserved": false,
+            "updated_at": 1766951510000
+          },
+          "spot_12": {
+            "clamp_closed": false,
+            "occupied": false,
+            "reserved": true,
+            "updated_at": 1766951510000
+          },
+          "spot_05": {
+            "clamp_closed": false,
+            "occupied": false,
+            "reserved": false,
+            "updated_at": 1766951510000
+          },
+          "spot_08": {
+            "clamp_closed": false,
+            "occupied": false,
+            "reserved": false,
+            "updated_at": 1766951510000
+          },
+          "spot_11": {
+            "clamp_closed": false,
+            "occupied": false,
+            "reserved": false,
+            "updated_at": 1766951510000
+          },
+          "spot_10": {
+            "clamp_closed": false,
+            "occupied": false,
+            "reserved": false,
+            "updated_at": 1766951510000
+          },
+          "spot_07": {
+            "clamp_closed": false,
+            "occupied": false,
+            "reserved": false,
+            "updated_at": 1766951510000
+          },
+          "spot_02": {
+            "clamp_closed": false,
+            "occupied": false,
+            "reserved": false,
+            "updated_at": 1766951510000
+          },
+          "spot_03": {
+            "clamp_closed": false,
+            "occupied": false,
+            "reserved": false,
+            "updated_at": 1766951510000
+          },
+          "spot_01": {
+            "clamp_closed": false,
+            "occupied": false,
+            "reserved": false,
+            "updated_at": 1766951510000
+          },
+          "spot_04": {
+            "clamp_closed": false,
+            "occupied": false,
+            "reserved": false,
+            "updated_at": 1766951510000
+          },
+          "spot_09": {
+            "clamp_closed": false,
+            "occupied": false,
+            "reserved": false,
+            "updated_at": 1766951510000
+          }
+        }
+      },
+      "pod_15": {
+        "capacity": 12,
+        "free_count": 9,
+        "occupied_count": 3,
+        "reserved_count": 0,
+        "last_seen": 1766951510000,
+        "spots": {
+          "spot_11": {
+            "clamp_closed": true,
+            "occupied": true,
+            "reserved": false,
+            "updated_at": 1766951510000
+          },
+          "spot_03": {
+            "clamp_closed": true,
+            "occupied": true,
+            "reserved": false,
+            "updated_at": 1766951510000
+          },
+          "spot_01": {
+            "clamp_closed": false,
+            "occupied": true,
+            "reserved": false,
+            "updated_at": 1766951510000
+          },
+          "spot_02": {
+            "clamp_closed": false,
+            "occupied": false,
+            "reserved": false,
+            "updated_at": 1766951510000
+          },
+          "spot_09": {
+            "clamp_closed": false,
+            "occupied": false,
+            "reserved": false,
+            "updated_at": 1766951510000
+          },
+          "spot_04": {
+            "clamp_closed": false,
+            "occupied": false,
+            "reserved": false,
+            "updated_at": 1766951510000
+          },
+          "spot_05": {
+            "clamp_closed": false,
+            "occupied": false,
+            "reserved": false,
+            "updated_at": 1766951510000
+          },
+          "spot_06": {
+            "clamp_closed": false,
+            "occupied": false,
+            "reserved": false,
+            "updated_at": 1766951510000
+          },
+          "spot_08": {
+            "clamp_closed": false,
+            "occupied": false,
+            "reserved": false,
+            "updated_at": 1766951510000
+          },
+          "spot_07": {
+            "clamp_closed": false,
+            "occupied": false,
+            "reserved": false,
+            "updated_at": 1766951510000
+          },
+          "spot_10": {
+            "clamp_closed": true,
+            "occupied": false,
+            "reserved": false,
+            "updated_at": 1766951510000
+          },
+          "spot_12": {
+            "clamp_closed": false,
+            "occupied": false,
+            "reserved": false,
+            "updated_at": 1766951510000
+          }
+        }
+      }
+    }
+  }
+}
