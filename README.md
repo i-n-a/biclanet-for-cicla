@@ -26,7 +26,7 @@ gantt
     Point of Contact                    :2025-12-09, 1d
     Final Presentation                   :2026-01-06, 1d
 ```
-# Presrntation video
+# Presentation video
 [![youtube linke](/media/milestone-2/BiclaNet_Presentation_video.png)](https://youtu.be/kNcF7gDWNXE)
 [youtube link](https://youtu.be/kNcF7gDWNXE)
 
